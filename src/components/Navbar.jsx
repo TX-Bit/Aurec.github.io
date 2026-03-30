@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 // ─── App Store URL placeholder ────────────────────────────────────────────────
-const APP_STORE_URL = 'https://apps.apple.com'
+const APP_STORE_URL = 'https://apps.apple.com/us/app/aurec/id6759679586'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)

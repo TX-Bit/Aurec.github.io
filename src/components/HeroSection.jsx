@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import HeroHeadline from './HeroHeadline'
 
 // ─── App Store URL — replace with real link ───────────────────────────────────
-const APP_STORE_URL = 'https://apps.apple.com'
+const APP_STORE_URL = 'https://apps.apple.com/us/app/aurec/id6759679586'
 
 
 // ─── iPhone Mockup ────────────────────────────────────────────────────────────
