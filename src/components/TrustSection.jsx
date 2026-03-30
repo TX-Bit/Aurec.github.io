@@ -8,8 +8,8 @@ const PILLARS = [
         <path d="M9 6h6M9 10h6M9 14h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
-    title: 'Native iOS',
-    description: 'Built with native iOS APIs for a fast, stable, and familiar experience.',
+    title: 'Native iPhone & iPad',
+    description: 'Built with native iOS APIs for a fast, stable, and familiar experience on both iPhone and iPad.',
   },
   {
     icon: (
@@ -41,12 +41,12 @@ export default function TrustSection() {
         <div ref={titleRef} className="reveal text-center mb-16">
           <p className="text-xs text-white/30 tracking-[0.2em] uppercase mb-4">Built for iOS</p>
           <h2 className="text-[clamp(2rem,4.5vw,3rem)] font-bold tracking-tight text-white">
-            Designed around iPhone.
+            Designed around iPhone & iPad.
             <br />
             <span className="text-white/35">Fast, stable, familiar.</span>
           </h2>
           <p className="mt-4 text-white/35 max-w-md mx-auto text-base leading-relaxed">
-            Aurec is designed around native iPhone capabilities for a fast, stable, and familiar experience.
+            Aurec is designed around native Apple capabilities for a fast, stable, and familiar experience on both iPhone and iPad.
           </p>
         </div>
 
