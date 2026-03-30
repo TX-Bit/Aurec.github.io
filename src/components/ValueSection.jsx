@@ -55,19 +55,22 @@ export default function ValueSection() {
 
         {/* Screenshots */}
         <div ref={screensRef} className="reveal mb-20">
-          <div className="flex gap-4 justify-center flex-wrap sm:flex-nowrap items-end">
+          <div className="flex gap-6 md:gap-8 justify-center items-end overflow-x-auto pb-4">
             {SCREENS.map(({ src, label, description }, i) => (
               <div
                 key={label}
-                className="flex flex-col items-center gap-3 flex-1 min-w-[140px] max-w-[180px]"
-                style={{ transform: i % 2 === 0 ? 'translateY(0)' : 'translateY(20px)' }}
+                className="flex flex-col items-center gap-4 shrink-0"
+                style={{
+                  width: 200,
+                  transform: i % 2 === 0 ? 'translateY(0)' : 'translateY(28px)',
+                }}
               >
                 <div
-                  className="w-full rounded-[28px] overflow-hidden"
+                  className="w-full rounded-[32px] overflow-hidden"
                   style={{
                     boxShadow: i === 0
-                      ? '0 0 0 1px rgba(255,255,255,0.10), 0 24px 60px rgba(0,0,0,0.7), 0 0 40px rgba(232,67,58,0.08)'
-                      : '0 0 0 1px rgba(255,255,255,0.07), 0 16px 40px rgba(0,0,0,0.5)',
+                      ? '0 0 0 1px rgba(255,255,255,0.12), 0 32px 80px rgba(0,0,0,0.8), 0 0 50px rgba(232,67,58,0.10)'
+                      : '0 0 0 1px rgba(255,255,255,0.08), 0 20px 50px rgba(0,0,0,0.6)',
                   }}
                 >
                   <img
