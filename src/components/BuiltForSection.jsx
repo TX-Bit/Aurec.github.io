@@ -40,21 +40,6 @@ function AudienceCard({ icon, title, description, delayClass }) {
   )
 }
 
-function QuoteCard() {
-  const ref = useCardRef()
-  return (
-    <div
-      ref={ref}
-      className="reveal reveal-delay-3 glass-card rounded-2xl p-7 flex flex-col justify-between border-dashed border-white/[0.06] hover:border-white/[0.1] hover:bg-white/[0.03] transition-all duration-300"
-    >
-      <p className="text-2xl font-bold text-white/20 leading-snug tracking-tight">
-        "Simple when you want it. Powerful when you need it."
-      </p>
-      <div className="mt-6 text-sm text-white/20">— Aurec</div>
-    </div>
-  )
-}
-
 // ─── Section header ───────────────────────────────────────────────────────────
 function SectionTitle() {
   const ref = useCardRef()
@@ -127,7 +112,6 @@ export default function BuiltForSection() {
               delayClass={DELAY_CLASSES[i % 3]}
             />
           ))}
-          <QuoteCard />
         </div>
       </div>
     </section>

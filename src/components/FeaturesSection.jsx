@@ -37,12 +37,6 @@ const IconShare = () => (
   </svg>
 )
 
-const IconCloud = () => (
-  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-    <path d="M6 16a4 4 0 010-8 5 5 0 019.9-1A4 4 0 0116 16H6z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-)
-
 // ─── Feature data ─────────────────────────────────────────────────────────────
 const FEATURES = [
   {
@@ -73,12 +67,6 @@ const FEATURES = [
     icon: <IconShare />,
     title: 'Easy sharing & export',
     description: 'Send files quickly to Files, AirDrop, or other iOS apps in your preferred format.',
-    accent: false,
-  },
-  {
-    icon: <IconCloud />,
-    title: 'iCloud sync',
-    description: 'Keep recordings available across all your Apple devices automatically.',
     accent: false,
   },
 ]
