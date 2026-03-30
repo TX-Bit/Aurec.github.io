@@ -1,23 +1,26 @@
 import { useInView } from '../hooks/useInView'
 
 // ─── Feature icons — inline SVG ───────────────────────────────────────────────
-const IconWaveform = () => (
-  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-    <path d="M1 11h2.5M18.5 11H21M5.5 6v10M8 3v16M10.5 7v8M13 4v14M15.5 7v8M18.5 6v10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-  </svg>
-)
-
 const IconLightning = () => (
   <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
     <path d="M13 2L4 13h7l-2 7 9-11h-7l2-7z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
 
-const IconHeadphones = () => (
+const IconScissors = () => (
   <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-    <path d="M3 14v-3a8 8 0 0116 0v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    <rect x="1.5" y="13" width="4" height="6" rx="2" stroke="currentColor" strokeWidth="1.5" />
-    <rect x="16.5" y="13" width="4" height="6" rx="2" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="5" cy="5" r="2.5" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="5" cy="17" r="2.5" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M7 6.5L17 12M7 15.5L17 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M17 10l2-1.5M17 12l2 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>
+)
+
+const IconEar = () => (
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+    <path d="M10 2C6.69 2 4 4.69 4 8c0 2.2 1.08 4.13 2.75 5.3V16.5h6.5V13.3C14.92 12.13 16 10.2 16 8c0-3.31-2.69-6-6-6z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="10" cy="8" r="2" stroke="currentColor" strokeWidth="1.5" />
+    <line x1="10" y1="16.5" x2="10" y2="20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
   </svg>
 )
 
@@ -27,56 +30,55 @@ const IconFolder = () => (
   </svg>
 )
 
-const IconSparkle = () => (
+const IconShare = () => (
   <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-    <path d="M11 2v3M11 17v3M2 11h3M17 11h3M4.93 4.93l2.12 2.12M14.95 14.95l2.12 2.12M4.93 17.07l2.12-2.12M14.95 7.05l2.12-2.12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    <circle cx="11" cy="11" r="3" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M11 2v12M6 7l5-5 5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M4 14v4a1 1 0 001 1h12a1 1 0 001-1v-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
 
-const IconLayers = () => (
+const IconCloud = () => (
   <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-    <path d="M2 8l9-5 9 5-9 5-9-5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M2 14l9 5 9-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M6 16a4 4 0 010-8 5 5 0 019.9-1A4 4 0 0116 16H6z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
 
 // ─── Feature data ─────────────────────────────────────────────────────────────
 const FEATURES = [
   {
-    icon: <IconWaveform />,
-    title: 'High-quality audio',
-    description: 'Record at up to 48 kHz / 32-bit float. Crystal-clear capture for every situation — from whispered notes to live performances.',
+    icon: <IconLightning />,
+    title: 'One-tap recording',
+    description: 'Start recording immediately with zero setup friction. Just open the app and hit record.',
     accent: true,
   },
   {
-    icon: <IconLightning />,
+    icon: <IconScissors />,
+    title: 'Built-in audio editor',
+    description: 'Trim, cut, and polish recordings directly on iPhone. No desktop required.',
+    accent: false,
+  },
+  {
+    icon: <IconEar />,
     title: 'Auto Record',
     description: 'Set a silence threshold and let Aurec start recording automatically when sound is detected. Never miss a moment.',
     accent: false,
   },
   {
-    icon: <IconHeadphones />,
-    title: 'Live Monitoring',
-    description: 'Hear yourself in real time through your headphones while you record. Zero compromise on latency.',
-    accent: false,
-  },
-  {
     icon: <IconFolder />,
-    title: 'Session Organisation',
-    description: 'Every recording lives in a clean session view. Group by project, date, or create your own structure.',
+    title: 'Smart organization',
+    description: 'Sessions, metadata, and a clean list keep everything easy to manage. Find any recording instantly.',
     accent: false,
   },
   {
-    icon: <IconSparkle />,
-    title: 'Smart Naming',
-    description: 'Aurec names recordings intelligently using the time, location, or a quick note you leave right after stopping.',
+    icon: <IconShare />,
+    title: 'Easy sharing & export',
+    description: 'Send files quickly to Files, AirDrop, or other iOS apps in your preferred format.',
     accent: false,
   },
   {
-    icon: <IconLayers />,
-    title: 'Powerful, not complex',
-    description: 'Advanced settings live one level deep. The main screen stays clear. More power is always there when you need it.',
+    icon: <IconCloud />,
+    title: 'iCloud sync',
+    description: 'Keep recordings available across all your Apple devices automatically.',
     accent: false,
   },
 ]

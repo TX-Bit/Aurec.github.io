@@ -81,49 +81,30 @@ const AUDIENCES = [
       </svg>
     ),
     title: 'Musicians',
-    description: 'Capture rehearsals, demos, and spontaneous ideas at full fidelity. Aurec gets out of your way so you can stay in the moment.',
+    description: 'Capture riffs and demos the moment inspiration hits. Never lose an idea because your gear wasn\'t ready.',
   },
   {
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M8 14s-4 1-4 5h16c0-4-4-5-4-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M19 8h2M3 8h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    ),
-    title: 'Interviews',
-    description: 'Built-in live monitoring and smart auto-levels make interview recording reliable. Focus on the conversation, not the tech.',
-  },
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <rect x="2" y="5" width="20" height="14" rx="3" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M8 10h8M8 14h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    ),
-    title: 'Meetings',
-    description: 'Auto Record starts when the room gets loud. Smart naming keeps your archive organised without any extra effort.',
-  },
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M3 9l9-6 9 6v11a1 1 0 01-1 1H4a1 1 0 01-1-1V9z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-        <path d="M9 21V12h6v9" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      </svg>
-    ),
-    title: 'Field Recording',
-    description: 'Unlimited recording length, lossless WAV output, and a clean low-latency engine — ready for anything from city soundscapes to wildlife.',
-  },
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M12 1a4 4 0 014 4v7a4 4 0 11-8 0V5a4 4 0 014-4z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M12 1a4 4 0 014 4v5a4 4 0 11-8 0V5a4 4 0 014-4z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         <path d="M19 10v2a7 7 0 01-14 0v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         <path d="M12 19v4M8 23h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
-    title: 'Voice Notes',
-    description: 'One tap, instant recording. Aurec is the fastest way to capture a fleeting thought, shopping list, or idea on the fly.',
+    title: 'Podcasters & video creators',
+    description: 'Reliable field recording without complexity. Focus on your content — Aurec handles the rest.',
+  },
+  {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M4 4h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M8 20h8M12 16v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M8 9h8M8 12h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    ),
+    title: 'Students & note-takers',
+    description: 'Save voice notes clearly and stay organized. Your ideas, always within reach.',
   },
 ]
 
@@ -136,7 +117,7 @@ export default function BuiltForSection() {
       <div className="max-w-6xl mx-auto px-6">
         <SectionTitle />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {AUDIENCES.map(({ icon, title, description }, i) => (
             <AudienceCard
               key={title}

@@ -25,9 +25,12 @@ export default function Footer() {
       {/* CTA banner */}
       <div className="max-w-6xl mx-auto px-6 py-20 text-center">
         <p className="text-xs text-white/25 tracking-[0.2em] uppercase mb-5">Get started</p>
-        <h2 className="text-[clamp(2.5rem,6vw,4rem)] font-bold tracking-[-0.03em] text-white mb-8">
-          Ready to record?
+        <h2 className="text-[clamp(2.5rem,6vw,4rem)] font-bold tracking-[-0.03em] text-white mb-4">
+          Start recording today
         </h2>
+        <p className="text-white/35 text-lg mb-10 max-w-md mx-auto leading-relaxed">
+          Download Aurec on the App Store and capture your ideas before they fade.
+        </p>
         <a
           href={APP_STORE_URL}
           target="_blank"
