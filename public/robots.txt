@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tx-bit.github.io/Aurec.github.io/sitemap.xml
