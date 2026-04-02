@@ -9,12 +9,12 @@ const LINKS = [
   },
   {
     label: 'Privacy Policy',
-    href: 'https://github.com/TX-Bit/Aurec-privacy/blob/main/index.html',
+    href: 'https://tx-bit.github.io/Aurec-privacy/',
     external: true,
   },
   {
     label: 'Support',
-    href: 'https://github.com/TX-Bit/aurec-support',
+    href: 'https://tx-bit.github.io/aurec-support/',
     external: true,
   },
   {
