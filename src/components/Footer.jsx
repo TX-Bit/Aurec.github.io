@@ -9,12 +9,17 @@ const LINKS = [
   },
   {
     label: 'Privacy Policy',
-    href: '/privacy',
-    external: false,
+    href: 'https://github.com/TX-Bit/Aurec-privacy/blob/main/index.html',
+    external: true,
   },
   {
     label: 'Support',
-    href: 'mailto:support@aurec.app',
+    href: 'https://github.com/TX-Bit/aurec-support',
+    external: true,
+  },
+  {
+    label: 'Contact',
+    href: 'mailto:rndoldtech@gmail.com',
     external: false,
   },
 ]
