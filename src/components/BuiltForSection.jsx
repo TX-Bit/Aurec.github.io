@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react'
+import { copy } from '../i18n'
 
 // ─── useInView (inline — avoids hook-in-map violations) ──────────────────────
 function useCardRef() {
@@ -41,22 +42,23 @@ function AudienceCard({ icon, title, description, delayClass }) {
 }
 
 // ─── Section header ───────────────────────────────────────────────────────────
-function SectionTitle() {
+function SectionTitle({ locale }) {
   const ref = useCardRef()
+  const t = copy[locale].builtFor
   return (
     <div ref={ref} className="reveal text-center mb-16">
-      <p className="text-xs text-white/30 tracking-[0.2em] uppercase mb-4">Built For</p>
+      <p className="text-xs text-white/30 tracking-[0.2em] uppercase mb-4">{t.eyebrow}</p>
       <h2 className="text-[clamp(2rem,4.5vw,3rem)] font-bold tracking-tight text-white">
-        One recorder.
+        {t.title1}
         <br />
-        <span className="text-white/35">Every situation.</span>
+        <span className="text-white/35">{t.title2}</span>
       </h2>
     </div>
   )
 }
 
 // ─── Audience data ────────────────────────────────────────────────────────────
-const AUDIENCES = [
+const AUDIENCE_ICONS = [
   {
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -65,8 +67,6 @@ const AUDIENCES = [
         <circle cx="18" cy="16" r="3" stroke="currentColor" strokeWidth="1.5" />
       </svg>
     ),
-    title: 'Musicians',
-    description: 'Capture riffs and demos the moment inspiration hits. Never lose an idea because your gear wasn\'t ready.',
   },
   {
     icon: (
@@ -77,8 +77,6 @@ const AUDIENCES = [
         <path d="M12 19v4M8 23h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
-    title: 'Podcasters & video creators',
-    description: 'Reliable field recording without complexity. Focus on your content — Aurec handles the rest.',
   },
   {
     icon: (
@@ -88,22 +86,26 @@ const AUDIENCES = [
         <path d="M8 9h8M8 12h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
-    title: 'Students & note-takers',
-    description: 'Save voice notes clearly and stay organized. Your ideas, always within reach.',
   },
 ]
 
 const DELAY_CLASSES = ['reveal-delay-1', 'reveal-delay-2', 'reveal-delay-3']
 
 // ─── Built For Section ────────────────────────────────────────────────────────
-export default function BuiltForSection() {
+export default function BuiltForSection({ locale }) {
+  const t = copy[locale].builtFor
+  const audiences = AUDIENCE_ICONS.map((audience, i) => ({
+    ...audience,
+    ...t.items[i],
+  }))
+
   return (
     <section id="built-for" className="relative py-32">
       <div className="max-w-6xl mx-auto px-6">
-        <SectionTitle />
+        <SectionTitle locale={locale} />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {AUDIENCES.map(({ icon, title, description }, i) => (
+          {audiences.map(({ icon, title, description }, i) => (
             <AudienceCard
               key={title}
               icon={icon}

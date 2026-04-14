@@ -1,3 +1,4 @@
+import { getLocale } from './i18n'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
 import ValueSection from './components/ValueSection'
@@ -7,17 +8,19 @@ import TrustSection from './components/TrustSection'
 import Footer from './components/Footer'
 
 export default function App() {
+  const locale = getLocale()
+
   return (
     <div className="min-h-screen bg-[#080808] text-white antialiased">
-      <Navbar />
+      <Navbar locale={locale} />
       <main>
-        <HeroSection />
-        <ValueSection />
-        <FeaturesSection />
-        <BuiltForSection />
-        <TrustSection />
+        <HeroSection locale={locale} />
+        <ValueSection locale={locale} />
+        <FeaturesSection locale={locale} />
+        <BuiltForSection locale={locale} />
+        <TrustSection locale={locale} />
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </div>
   )
 }

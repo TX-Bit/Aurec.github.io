@@ -1,4 +1,5 @@
 import { useInView } from '../hooks/useInView'
+import { copy } from '../i18n'
 
 // ─── Feature icons — inline SVG ───────────────────────────────────────────────
 const IconLightning = () => (
@@ -37,38 +38,12 @@ const IconShare = () => (
   </svg>
 )
 
-// ─── Feature data ─────────────────────────────────────────────────────────────
-const FEATURES = [
-  {
-    icon: <IconLightning />,
-    title: 'One-tap recording',
-    description: 'Start recording immediately with zero setup friction. Just open the app and hit record.',
-    accent: true,
-  },
-  {
-    icon: <IconScissors />,
-    title: 'Built-in audio editor',
-    description: 'Trim, cut, and polish recordings directly on iPhone. No desktop required.',
-    accent: false,
-  },
-  {
-    icon: <IconEar />,
-    title: 'Auto Record',
-    description: 'Set a silence threshold and let Aurec start recording automatically when sound is detected. Never miss a moment.',
-    accent: false,
-  },
-  {
-    icon: <IconFolder />,
-    title: 'Smart organization',
-    description: 'Sessions, metadata, and a clean list keep everything easy to manage. Find any recording instantly.',
-    accent: false,
-  },
-  {
-    icon: <IconShare />,
-    title: 'Easy sharing & export',
-    description: 'Send files quickly to Files, AirDrop, or other iOS apps in your preferred format.',
-    accent: false,
-  },
+const FEATURE_ICONS = [
+  { icon: <IconLightning />, accent: true },
+  { icon: <IconScissors />, accent: false },
+  { icon: <IconEar />, accent: false },
+  { icon: <IconFolder />, accent: false },
+  { icon: <IconShare />, accent: false },
 ]
 
 // ─── Feature card ─────────────────────────────────────────────────────────────
@@ -101,25 +76,30 @@ function FeatureCard({ icon, title, description, accent, delayClass }) {
 }
 
 // ─── Features Section ─────────────────────────────────────────────────────────
-export default function FeaturesSection() {
+export default function FeaturesSection({ locale }) {
   const titleRef = useInView()
+  const t = copy[locale].features
+  const features = FEATURE_ICONS.map((feature, i) => ({
+    ...feature,
+    ...t.items[i],
+  }))
 
   return (
     <section id="features" className="relative py-32">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div ref={titleRef} className="reveal text-center mb-16">
-          <p className="text-xs text-white/30 tracking-[0.2em] uppercase mb-4">Features</p>
+          <p className="text-xs text-white/30 tracking-[0.2em] uppercase mb-4">{t.eyebrow}</p>
           <h2 className="text-[clamp(2rem,4.5vw,3rem)] font-bold tracking-tight text-white">
-            Everything you need.
+            {t.title1}
             <br />
-            <span className="text-white/35">Nothing you don't.</span>
+            <span className="text-white/35">{t.title2}</span>
           </h2>
         </div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {FEATURES.map((feature, i) => (
+          {features.map((feature, i) => (
             <FeatureCard
               key={feature.title}
               {...feature}

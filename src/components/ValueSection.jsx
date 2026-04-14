@@ -1,39 +1,18 @@
 import { useInView } from '../hooks/useInView'
-
-const STATS = [
-  { value: '48 kHz', label: 'Studio-grade sample rate' },
-  { value: '32-bit', label: 'Float recording depth' },
-  { value: '∞', label: 'Recording length' },
-]
+import { copy } from '../i18n'
 
 const BASE = import.meta.env.BASE_URL
 
-const SCREENS = [
-  {
-    src: `${BASE}screenshots/Recording.png`,
-    label: 'One-tap recording',
-    description: 'Start instantly, stop anytime',
-  },
-  {
-    src: `${BASE}screenshots/ipad-autorec.png`,
-    label: 'Records automatically',
-    description: 'Auto-Rec detects sound and starts',
-  },
-  {
-    src: `${BASE}screenshots/recordings.png`,
-    label: 'Smart organization',
-    description: 'Sessions keep everything tidy',
-  },
-  {
-    src: `${BASE}screenshots/settings.png`,
-    label: 'Full control',
-    description: 'Pro settings, one tap away',
-  },
-]
-
-export default function ValueSection() {
+export default function ValueSection({ locale }) {
   const ref = useInView()
   const screensRef = useInView()
+  const t = copy[locale].value
+  const screens = [
+    { src: `${BASE}screenshots/Recording.png`, ...t.screens[0] },
+    { src: `${BASE}screenshots/ipad-autorec.png`, ...t.screens[1] },
+    { src: `${BASE}screenshots/recordings.png`, ...t.screens[2] },
+    { src: `${BASE}screenshots/settings.png`, ...t.screens[3] },
+  ]
 
   return (
     <section className="relative py-32 overflow-hidden">
@@ -42,22 +21,22 @@ export default function ValueSection() {
       <div className="max-w-5xl mx-auto px-6">
         {/* Main statement */}
         <div ref={ref} className="reveal text-center mb-20">
-          <p className="text-xs text-white/30 tracking-[0.2em] uppercase mb-6">What is Aurec</p>
+          <p className="text-xs text-white/30 tracking-[0.2em] uppercase mb-6">{t.eyebrow}</p>
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-bold tracking-tight leading-[1.1] text-white max-w-3xl mx-auto">
-            Aurec is a modern voice recorder app for iPhone that lets you record audio, music, and ideas effortlessly.
+            {t.title}
           </h2>
           <p className="mt-6 text-lg text-white/40 max-w-2xl mx-auto leading-relaxed">
-            Unlike basic recording apps, Aurec supports automatic recording, overdubbing, and high-quality WAV recording.
+            {t.body1}
           </p>
           <p className="mt-4 text-lg text-white/40 max-w-2xl mx-auto leading-relaxed">
-            Whether you are a musician, student, or content creator, Aurec helps you capture ideas instantly.
+            {t.body2}
           </p>
         </div>
 
         {/* Screenshots */}
         <div ref={screensRef} className="reveal mb-20">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 items-end">
-            {SCREENS.map(({ src, label, description }, i) => (
+            {screens.map(({ src, label, description }, i) => (
               <div
                 key={label}
                 className="flex flex-col items-center gap-4"
@@ -84,7 +63,7 @@ export default function ValueSection() {
 
         {/* Stats row */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {STATS.map(({ value, label }, i) => (
+          {t.stats.map(({ value, label }, i) => (
             <div
               key={value}
               className={`reveal reveal-delay-${i + 1} glass-card rounded-2xl flex flex-col items-center justify-center py-10 px-6 text-center`}

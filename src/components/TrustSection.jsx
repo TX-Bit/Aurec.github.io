@@ -1,6 +1,7 @@
 import { useInView } from '../hooks/useInView'
+import { copy } from '../i18n'
 
-const PILLARS = [
+const PILLAR_ICONS = [
   {
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -8,8 +9,6 @@ const PILLARS = [
         <path d="M9 6h6M9 10h6M9 14h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
-    title: 'Native iPhone & iPad',
-    description: 'Built with native iOS APIs for a fast, stable, and familiar experience on both iPhone and iPad.',
   },
   {
     icon: (
@@ -17,8 +16,6 @@ const PILLARS = [
         <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: 'No account required',
-    description: 'Start recording on first launch. No sign-up, no cloud lock-in.',
   },
   {
     icon: (
@@ -27,31 +24,34 @@ const PILLARS = [
         <circle cx="12" cy="9" r="2.5" stroke="currentColor" strokeWidth="1.5" />
       </svg>
     ),
-    title: 'Your data stays yours',
-    description: 'Recordings stay on your device. No tracking, no ads.',
   },
 ]
 
-export default function TrustSection() {
+export default function TrustSection({ locale }) {
   const titleRef = useInView()
+  const t = copy[locale].trust
+  const pillars = PILLAR_ICONS.map((pillar, i) => ({
+    ...pillar,
+    ...t.items[i],
+  }))
 
   return (
     <section className="relative py-32">
       <div className="max-w-6xl mx-auto px-6">
         <div ref={titleRef} className="reveal text-center mb-16">
-          <p className="text-xs text-white/30 tracking-[0.2em] uppercase mb-4">Built for iOS</p>
+          <p className="text-xs text-white/30 tracking-[0.2em] uppercase mb-4">{t.eyebrow}</p>
           <h2 className="text-[clamp(2rem,4.5vw,3rem)] font-bold tracking-tight text-white">
-            Designed around iPhone & iPad.
+            {t.title1}
             <br />
-            <span className="text-white/35">Fast, stable, familiar.</span>
+            <span className="text-white/35">{t.title2}</span>
           </h2>
           <p className="mt-4 text-white/35 max-w-md mx-auto text-base leading-relaxed">
-            Aurec is designed around native Apple capabilities for a fast, stable, and familiar experience on both iPhone and iPad.
+            {t.intro}
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {PILLARS.map(({ icon, title, description }, i) => (
+          {pillars.map(({ icon, title, description }, i) => (
             <div
               key={title}
               className={`reveal reveal-delay-${i + 1} glass-card rounded-2xl p-7 flex flex-col gap-4`}

@@ -3,6 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        const forced = params.get('lang');
+        if (forced === 'en') return;
+
+        const prefersFinnish =
+          (navigator.languages || []).some(lang => lang.toLowerCase().startsWith('fi')) ||
+          (navigator.language || '').toLowerCase().startsWith('fi') ||
+          Intl.DateTimeFormat().resolvedOptions().timeZone === 'Europe/Helsinki';
+
+        if (prefersFinnish && window.location.pathname === '/') {
+          window.location.replace('/fi/');
+        }
+      })();
+    </script>
 
     <!-- Primary SEO -->
     <title>Aurec – Voice Recorder with Overdub for iPhone | Record Guitar and Voice</title>
@@ -10,6 +26,9 @@
     <meta name="keywords" content="voice recorder with overdub, audio recorder for musicians iphone, record guitar and voice app, simple voice recorder ios app, iphone recorder, voice recorder app, audio recorder iphone, iphone auto recorder, music recorder iphone, wav recorder iphone" />
     <meta name="author" content="Aurec" />
     <link rel="canonical" href="https://www.aurec.site/" />
+    <link rel="alternate" hreflang="en" href="https://www.aurec.site/" />
+    <link rel="alternate" hreflang="fi" href="https://www.aurec.site/fi/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.aurec.site/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

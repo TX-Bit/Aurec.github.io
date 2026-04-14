@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react'
+import { APP_STORE_URL, copy } from '../i18n'
 import HeroHeadline from './HeroHeadline'
-
-// ─── App Store URL — replace with real link ───────────────────────────────────
-const APP_STORE_URL = 'https://apps.apple.com/us/app/aurec/id6759679586'
 
 
 // ─── iPhone Mockup ────────────────────────────────────────────────────────────
-function IPhoneMockup() {
+function IPhoneMockup({ locale }) {
   const [seconds, setSeconds] = useState(7)
   const [level, setLevel] = useState(36)
+  const t = copy[locale].hero.mockup
 
   useEffect(() => {
     const t = setInterval(() => setSeconds(s => s + 1), 1000)
@@ -92,7 +91,7 @@ function IPhoneMockup() {
                 <circle cx="7" cy="6" r="1.6" stroke="rgba(255,255,255,0.65)" strokeWidth="1" fill="none" />
                 <line x1="7" y1="11.5" x2="7" y2="13" stroke="rgba(255,255,255,0.65)" strokeWidth="1.1" strokeLinecap="round" />
               </svg>
-              <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.65)', fontWeight: 500 }}>Monitor</span>
+              <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.65)', fontWeight: 500 }}>{t.monitor}</span>
             </div>
           </div>
 
@@ -104,7 +103,7 @@ function IPhoneMockup() {
                   <rect key={i} x={x} y={[4, 2, 0, 3, 0, 2, 4][i]} width="1.6" height={[4, 8, 12, 6, 12, 8, 4][i]} rx="0.8" fill="rgba(255,255,255,0.55)" />
                 ))}
               </svg>
-              <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.8)', fontWeight: 500, letterSpacing: '-0.01em' }}>Our Band · #3</span>
+              <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.8)', fontWeight: 500, letterSpacing: '-0.01em' }}>{t.session}</span>
               <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
                 <path d="M2.5 4 5.5 7.5 8.5 4" stroke="rgba(255,255,255,0.4)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -123,7 +122,7 @@ function IPhoneMockup() {
             {/* Recording label */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 10 }}>
               <div className="rec-dot" style={{ width: 5, height: 5, borderRadius: '50%', background: '#E8433A', flexShrink: 0 }} />
-              <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.5)', letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 500 }}>Recording</span>
+              <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.5)', letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 500 }}>{t.recording}</span>
             </div>
 
             {/* Level meter */}
@@ -149,7 +148,7 @@ function IPhoneMockup() {
                 <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <div style={{ width: 14, height: 14, borderRadius: 3, background: 'rgba(255,255,255,0.75)' }} />
                 </div>
-                <span style={{ fontSize: 9.5, color: 'rgba(255,255,255,0.4)' }}>Stop</span>
+                <span style={{ fontSize: 9.5, color: 'rgba(255,255,255,0.4)' }}>{t.stop}</span>
               </div>
 
               {/* Pause */}
@@ -169,14 +168,14 @@ function IPhoneMockup() {
                     <line x1="10" y1="16.5" x2="10" y2="18.5" stroke="#34C759" strokeWidth="1.25" strokeLinecap="round" />
                   </svg>
                 </div>
-                <span style={{ fontSize: 9.5, color: '#34C759' }}>Auto Record</span>
+                <span style={{ fontSize: 9.5, color: '#34C759' }}>{t.autoRecord}</span>
               </div>
             </div>
           </div>
 
           {/* Tab bar */}
           <div style={{ display: 'flex', paddingBottom: 16, paddingTop: 8, paddingLeft: 6, paddingRight: 6, borderTop: '0.5px solid rgba(255,255,255,0.08)', flexShrink: 0 }}>
-            {['Recorder', 'Recordings', 'Info'].map((label, i) => (
+            {t.tabs.map((label, i) => (
               <div key={label} style={{
                 flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
                 background: i === 0 ? 'rgba(255,255,255,0.09)' : 'transparent',
@@ -196,8 +195,9 @@ function IPhoneMockup() {
 }
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
-export default function HeroSection() {
+export default function HeroSection({ locale }) {
   const [mounted, setMounted] = useState(false)
+  const t = copy[locale].hero
   useEffect(() => { setMounted(true) }, [])
 
   return (
@@ -229,11 +229,12 @@ export default function HeroSection() {
               className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 mb-8 text-xs text-white/50 tracking-wide transition-all duration-700 ${mounted ? 'opacity-100' : 'opacity-0'}`}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-accent rec-dot" />
-              Now available on the App Store
+              {t.badge}
             </div>
 
             {/* Headline */}
             <HeroHeadline
+              locale={locale}
               className={`mb-6 transition-all duration-700 delay-100 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
             />
 
@@ -241,8 +242,7 @@ export default function HeroSection() {
             <p
               className={`text-[clamp(1rem,2vw,1.2rem)] text-white/45 leading-relaxed mb-10 max-w-md mx-auto lg:mx-0 transition-all duration-700 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
             >
-              A simple voice recorder iOS app with overdub for iPhone.
-              Record guitar and voice, ideas, and sessions with high-quality audio and automatic recording.
+              {t.subhead}
             </p>
 
             {/* CTAs */}
@@ -259,7 +259,7 @@ export default function HeroSection() {
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                 </svg>
-                Download on the App Store
+                {t.primaryCta}
               </a>
 
               {/* Secondary CTA */}
@@ -267,7 +267,7 @@ export default function HeroSection() {
                 href="#features"
                 className="inline-flex items-center gap-2 text-[15px] text-white/50 hover:text-white/80 transition-colors duration-200 group"
               >
-                See features
+                {t.secondaryCta}
                 <svg
                   width="14" height="14" viewBox="0 0 14 14" fill="none"
                   className="transition-transform duration-200 group-hover:translate-x-0.5"
@@ -282,7 +282,7 @@ export default function HeroSection() {
           <div
             className={`flex-1 flex justify-center lg:justify-end transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
-            <IPhoneMockup />
+            <IPhoneMockup locale={locale} />
           </div>
         </div>
 

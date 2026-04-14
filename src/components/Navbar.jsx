@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
+import { APP_STORE_URL, copy, getLocalePath } from '../i18n'
 
-// ─── App Store URL placeholder ────────────────────────────────────────────────
-const APP_STORE_URL = 'https://apps.apple.com/us/app/aurec/id6759679586'
-
-export default function Navbar() {
+export default function Navbar({ locale }) {
   const [scrolled, setScrolled] = useState(false)
+  const t = copy[locale]
+  const nextLocale = locale === 'fi' ? 'en' : 'fi'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -35,8 +35,8 @@ export default function Navbar() {
         {/* Nav links — hidden on mobile */}
         <ul className="hidden md:flex items-center gap-8">
           {[
-            { label: 'Features', href: '#features' },
-            { label: 'Built For', href: '#built-for' },
+            { label: t.nav.features, href: '#features' },
+            { label: t.nav.builtFor, href: '#built-for' },
           ].map(({ label, href }) => (
             <li key={label}>
               <a
@@ -49,15 +49,24 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA */}
-        <a
-          href={APP_STORE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm font-medium text-white bg-white/[0.08] hover:bg-white/[0.13] border border-white/[0.08] px-4 py-2 rounded-full transition-all duration-200"
-        >
-          Download
-        </a>
+        <div className="flex items-center gap-2.5">
+          <a
+            href={getLocalePath(nextLocale)}
+            lang={nextLocale}
+            className="inline-flex text-xs font-medium text-white/60 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] px-3 py-2 rounded-full transition-all duration-200"
+          >
+            {nextLocale.toUpperCase()}
+          </a>
+
+          <a
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-white bg-white/[0.08] hover:bg-white/[0.13] border border-white/[0.08] px-4 py-2 rounded-full transition-all duration-200"
+          >
+            {t.nav.download}
+          </a>
+        </div>
       </nav>
     </header>
   )
