@@ -30,16 +30,16 @@ export const copy = {
     },
     hero: {
       badge: 'Now available on the App Store',
-      words: ['beautifully', 'effortlessly', 'automatically', 'clearly', 'like a pro'],
-      subhead: 'A simple voice recorder iOS app with overdub for iPhone. Record guitar and voice, ideas, and sessions with high-quality audio and automatic recording.',
+      words: ['easily', 'automatically', 'with quality'],
+      subhead: 'Record guitar and voice, ideas, with quality. Simple and easy, yet full of features.',
       primaryCta: 'Download on the App Store',
       secondaryCta: 'See features',
       mockup: {
         monitor: 'Monitor',
-        session: 'Our Band · #3',
+        session: 'Session · #3',
         recording: 'Recording',
         stop: 'Stop',
-        autoRecord: 'Auto Record',
+        autoRecord: 'Auto-Rec',
         tabs: ['Recorder', 'Recordings', 'Info'],
       },
     },
@@ -94,7 +94,7 @@ export const copy = {
       items: [
         {
           title: 'Musicians',
-          description: "Capture riffs and demos the moment inspiration hits. Never lose an idea because your gear wasn't ready.",
+          description: "Capture riffs and demos the moment inspiration hits. Never lose an idea because your gear wasn't ready. Record band rehearsals and gigs, for example, using automatic recording.",
         },
         {
           title: 'Podcasters & video creators',
@@ -148,23 +148,23 @@ export const copy = {
     },
     hero: {
       badge: 'Nyt App Storessa',
-      words: ['selkeästi', 'vaivattomasti', 'automaattisesti', 'laadukkaasti', 'kuin ammattilainen'],
-      subhead: 'Yksinkertainen iPhonen äänityssovellus overdub-tuella. Tallenna kitaraa ja laulua, ideoita ja sessioita laadukkaasti sekä automaattisella äänityksellä.',
+      words: ['helposti', 'automaattisesti', 'laadukkaasti'],
+      subhead: 'Tallenna kitaraa ja laulua, ideoita, laadukkaasti. Yksinkertainen ja helppo, täynnä ominaisuuksia',
       primaryCta: 'Lataa App Storesta',
       secondaryCta: 'Katso ominaisuudet',
       mockup: {
-        monitor: 'Monitori',
-        session: 'Bändi · #3',
-        recording: 'Tallennus',
-        stop: 'Pysäytä',
+        monitor: 'Monitor',
+        session: 'Session · #3',
+        recording: 'Recording',
+        stop: 'Stop',
         autoRecord: 'Auto-Rec',
-        tabs: ['Tallennin', 'Tallenteet', 'Tiedot'],
+        tabs: ['Recorder', 'Recordings', 'Info'],
       },
     },
     value: {
       eyebrow: 'Mikä on Aurec',
       title: 'Aurec on moderni iPhonen äänityssovellus, jolla tallennat ääntä, musiikkia ja ideoita vaivattomasti.',
-      body1: 'Toisin kuin perusäänittimet, Aurec tukee automaattista tallennusta, overdubia ja korkealaatuista WAV-äänitystä.',
+      body1: 'Toisin kuin perusäänittimet, Aurec tukee automaattista tallennusta, päällekkäisäänityksiä ja WAV-äänimuotoa.',
       body2: 'Olitpa muusikko, opiskelija tai sisällöntuottaja, Aurec auttaa tallentamaan ideat heti niiden syntyessä.',
       screens: [
         { label: 'Tallennus yhdellä napilla', description: 'Aloita heti, lopeta milloin vain' },
@@ -212,7 +212,7 @@ export const copy = {
       items: [
         {
           title: 'Muusikoille',
-          description: 'Tallenna riffit ja demot heti inspiraation iskiessä. Älä menetä ideaa siksi, ettei kalusto ollut valmiina.',
+          description: 'Tallenna riffit ja demot heti inspiraation iskiessä. Älä menetä ideaa siksi, ettei kalusto ollut valmiina. Äänitä esimerkiksi bänditreenit, keikat käyttämällä automaattistä äänitystä.',
         },
         {
           title: 'Podcastaajille ja videontekijöille',
