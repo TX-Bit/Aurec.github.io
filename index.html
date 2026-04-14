@@ -7,15 +7,15 @@
       (function () {
         const params = new URLSearchParams(window.location.search);
         const forced = params.get('lang');
-        if (forced === 'en') return;
+        if (forced === 'en' || forced === 'fi' || forced === 'fr' || forced === 'sv') return;
 
-        const prefersFinnish =
-          (navigator.languages || []).some(lang => lang.toLowerCase().startsWith('fi')) ||
-          (navigator.language || '').toLowerCase().startsWith('fi') ||
-          Intl.DateTimeFormat().resolvedOptions().timeZone === 'Europe/Helsinki';
+        const languages = navigator.languages || [navigator.language || ''];
+        const preferred = languages
+          .map(lang => lang.toLowerCase().slice(0, 2))
+          .find(lang => ['fi', 'fr', 'sv'].includes(lang));
 
-        if (prefersFinnish && window.location.pathname === '/') {
-          window.location.replace('/fi/');
+        if (preferred && window.location.pathname === '/') {
+          window.location.replace('/' + preferred + '/');
         }
       })();
     </script>
@@ -28,6 +28,8 @@
     <link rel="canonical" href="https://www.aurec.site/" />
     <link rel="alternate" hreflang="en" href="https://www.aurec.site/" />
     <link rel="alternate" hreflang="fi" href="https://www.aurec.site/fi/" />
+    <link rel="alternate" hreflang="fr" href="https://www.aurec.site/fr/" />
+    <link rel="alternate" hreflang="sv" href="https://www.aurec.site/sv/" />
     <link rel="alternate" hreflang="x-default" href="https://www.aurec.site/" />
 
     <!-- Open Graph -->

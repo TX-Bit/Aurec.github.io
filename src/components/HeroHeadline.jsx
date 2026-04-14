@@ -4,7 +4,8 @@ import { copy } from '../i18n'
 export default function HeroHeadline({ locale, className = '' }) {
   const [index, setIndex] = useState(0)
   const [exiting, setExiting] = useState(false)
-  const words = copy[locale].hero.words
+  const heroCopy = copy[locale].hero
+  const words = heroCopy.words
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -19,7 +20,7 @@ export default function HeroHeadline({ locale, className = '' }) {
 
   return (
     <h1 className={`text-[clamp(3.5rem,9vw,6.5rem)] font-bold tracking-[-0.04em] leading-[0.93] ${className}`}>
-      <span className="gradient-text">{locale === 'fi' ? 'Tallenna' : 'Record'}</span>
+      <span className="gradient-text">{heroCopy.headlineVerb}</span>
       <br />
       <span
         key={index}

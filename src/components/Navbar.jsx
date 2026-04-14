@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { APP_STORE_URL, copy, getLocalePath } from '../i18n'
+import { APP_STORE_URL, LOCALES, copy, getLocalePath, localeNames } from '../i18n'
 
 export default function Navbar({ locale }) {
   const [scrolled, setScrolled] = useState(false)
   const t = copy[locale]
-  const nextLocale = locale === 'fi' ? 'en' : 'fi'
+  const otherLocales = LOCALES.filter(code => code !== locale)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -49,14 +49,20 @@ export default function Navbar({ locale }) {
           ))}
         </ul>
 
-        <div className="flex items-center gap-2.5">
-          <a
-            href={getLocalePath(nextLocale)}
-            lang={nextLocale}
-            className="inline-flex text-xs font-medium text-white/60 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] px-3 py-2 rounded-full transition-all duration-200"
-          >
-            {nextLocale.toUpperCase()}
-          </a>
+        <div className="flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-1.5">
+            {otherLocales.map(code => (
+              <a
+                key={code}
+                href={getLocalePath(code)}
+                lang={code}
+                title={localeNames[code]}
+                className="inline-flex text-xs font-medium text-white/60 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] px-2.5 py-2 rounded-full transition-all duration-200"
+              >
+                {code.toUpperCase()}
+              </a>
+            ))}
+          </div>
 
           <a
             href={APP_STORE_URL}
