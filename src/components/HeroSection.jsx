@@ -241,8 +241,8 @@ export default function HeroSection() {
             <p
               className={`text-[clamp(1rem,2vw,1.2rem)] text-white/45 leading-relaxed mb-10 max-w-md mx-auto lg:mx-0 transition-all duration-700 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
             >
-              The audio recorder for iPhone that stays out of your way.
-              High-quality capture for meetings, music, and every moment worth keeping.
+              A simple voice recorder iOS app with overdub for iPhone.
+              Record guitar and voice, ideas, and sessions with high-quality audio and automatic recording.
             </p>
 
             {/* CTAs */}

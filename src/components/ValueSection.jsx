@@ -44,12 +44,13 @@ export default function ValueSection() {
         <div ref={ref} className="reveal text-center mb-20">
           <p className="text-xs text-white/30 tracking-[0.2em] uppercase mb-6">What is Aurec</p>
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-bold tracking-tight leading-[1.1] text-white max-w-3xl mx-auto">
-            High-quality audio.{' '}
-            <span className="text-white/35">Effortless workflow.</span>
+            Aurec is a modern voice recorder app for iPhone that lets you record audio, music, and ideas effortlessly.
           </h2>
-          <p className="mt-6 text-lg text-white/40 max-w-xl mx-auto leading-relaxed">
-            Aurec is built around a single idea: recording should feel natural. Pick it up, hit record,
-            and focus on what matters. Everything else happens quietly in the background.
+          <p className="mt-6 text-lg text-white/40 max-w-2xl mx-auto leading-relaxed">
+            Unlike basic recording apps, Aurec supports automatic recording, overdubbing, and high-quality WAV recording.
+          </p>
+          <p className="mt-4 text-lg text-white/40 max-w-2xl mx-auto leading-relaxed">
+            Whether you are a musician, student, or content creator, Aurec helps you capture ideas instantly.
           </p>
         </div>
 
