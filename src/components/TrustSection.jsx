@@ -36,36 +36,35 @@ export default function TrustSection({ locale }) {
   }))
 
   return (
-    <section className="relative py-32">
-      <div className="max-w-6xl mx-auto px-6">
-        <div ref={titleRef} className="reveal text-center mb-16">
-          <p className="text-xs text-white/30 tracking-[0.2em] uppercase mb-4">{t.eyebrow}</p>
-          <h2 className="text-[clamp(2rem,4.5vw,3rem)] font-bold tracking-tight text-white">
-            {t.title1}
-            <br />
-            <span className="text-white/35">{t.title2}</span>
-          </h2>
-          <p className="mt-4 text-white/35 max-w-md mx-auto text-base leading-relaxed">
-            {t.intro}
-          </p>
-        </div>
+    <section className="section container">
+      <div ref={titleRef} className={`text-center reveal ${titleRef.current ? 'visible' : ''}`} style={{ marginBottom: '64px' }}>
+        <p className="eyebrow">{t.eyebrow}</p>
+        <h2 className="section-title">
+          {t.title1}
+          <br />
+          <span style={{ color: 'rgba(255,255,255,0.35)' }}>{t.title2}</span>
+        </h2>
+        <p className="section-subtitle">
+          {t.intro}
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {pillars.map(({ icon, title, description }, i) => (
-            <div
-              key={title}
-              className={`reveal reveal-delay-${i + 1} glass-card rounded-2xl p-7 flex flex-col gap-4`}
-            >
-              <div className="w-10 h-10 rounded-xl bg-white/[0.05] text-white/40 flex items-center justify-center">
-                {icon}
-              </div>
-              <div>
-                <h3 className="text-[15px] font-semibold text-white mb-2 tracking-tight">{title}</h3>
-                <p className="text-[13.5px] text-white/40 leading-relaxed">{description}</p>
-              </div>
+      <div className="features-grid" style={{ marginTop: 0 }}>
+        {pillars.map(({ icon, title, description }, i) => (
+          <div
+            key={title}
+            className={`glow-card reveal delay-${i + 1} ${titleRef.current ? 'visible' : ''}`}
+            style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
+          >
+            <div className="feature-icon-wrapper" style={{ marginBottom: 0 }}>
+              {icon}
             </div>
-          ))}
-        </div>
+            <div>
+              <h3 className="feature-title">{title}</h3>
+              <p className="feature-desc">{description}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   )

@@ -7,75 +7,46 @@ export default function ValueSection({ locale }) {
   const ref = useInView()
   const screensRef = useInView()
   const t = copy[locale].value
+  
   const screens = [
-    { src: `${BASE}screenshots/Recording.png`, ...t.screens[0] },
-    { src: `${BASE}screenshots/ipad-autorec.png`, ...t.screens[1] },
-    { src: `${BASE}screenshots/recordings.png`, ...t.screens[2] },
-    { src: `${BASE}screenshots/settings.png`, ...t.screens[3] },
+    { src: `${BASE}screenshots/iphone/01-recorder.png`, ...t.screens[0] },
+    { src: `${BASE}screenshots/ipad/04-multitrack.png`, ...t.screens[1] },
+    { src: `${BASE}screenshots/iphone/02-recordings.png`, ...t.screens[2] },
+    { src: `${BASE}screenshots/iphone/03-audio-editor.png`, ...t.screens[3] },
   ]
 
   return (
-    <section className="relative py-32 overflow-hidden">
-      <div className="pointer-events-none absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
-
-      <div className="max-w-5xl mx-auto px-6">
-        {/* Main statement */}
-        <div ref={ref} className="reveal text-center mb-20">
-          <p className="text-xs text-white/30 tracking-[0.2em] uppercase mb-6">{t.eyebrow}</p>
-          <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-bold tracking-tight leading-[1.1] text-white max-w-3xl mx-auto">
+    <section className="section" style={{ position: 'relative' }}>
+      <div className="container">
+        <div ref={ref} className={`text-center reveal ${ref.current ? 'visible' : ''}`} style={{ marginBottom: '80px' }}>
+          <p className="eyebrow">{t.eyebrow}</p>
+          <h2 className="section-title" style={{ maxWidth: '800px', margin: '0 auto 24px' }}>
             {t.title}
           </h2>
-          <p className="mt-6 text-lg text-white/40 max-w-2xl mx-auto leading-relaxed">
+          <p className="section-subtitle">
             {t.body1}
           </p>
-          <p className="mt-4 text-lg text-white/40 max-w-2xl mx-auto leading-relaxed">
+          <p className="section-subtitle" style={{ marginTop: '16px' }}>
             {t.body2}
           </p>
         </div>
 
-        {/* Screenshots */}
-        <div ref={screensRef} className="reveal mb-20">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 items-end">
+        {/* 4-column grid */}
+        <div ref={screensRef} className={`reveal delay-1 ${screensRef.current ? 'visible' : ''}`}>
+          <div className="screens-grid">
             {screens.map(({ src, label, description }, i) => (
-              <div
-                key={label}
-                className="flex flex-col items-center gap-4"
-                style={{ transform: i % 2 === 0 ? 'translateY(0)' : 'translateY(32px)' }}
-              >
-                <div
-                  className="w-full rounded-[28px] overflow-hidden"
-                  style={{
-                    boxShadow: i === 0
-                      ? '0 0 0 1px rgba(255,255,255,0.12), 0 32px 80px rgba(0,0,0,0.8), 0 0 50px rgba(232,67,58,0.10)'
-                      : '0 0 0 1px rgba(255,255,255,0.08), 0 20px 50px rgba(0,0,0,0.6)',
-                  }}
-                >
-                  <img src={src} alt={label} className="w-full h-auto block" loading="lazy" />
+              <div key={label} className="gallery-item">
+                <div className={`gallery-img-wrapper ${i === 0 ? 'highlight' : ''}`}>
+                  <img src={src} alt={label} className="gallery-img" loading="lazy" />
                 </div>
-                <div className="text-center">
-                  <div className="text-[13px] font-medium text-white/70">{label}</div>
-                  <div className="text-[11px] text-white/30 mt-0.5">{description}</div>
+                <div>
+                  <div className="gallery-label">{label}</div>
+                  <div className="gallery-desc">{description}</div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Stats row */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {t.stats.map(({ value, label }, i) => (
-            <div
-              key={value}
-              className={`reveal reveal-delay-${i + 1} glass-card rounded-2xl flex flex-col items-center justify-center py-10 px-6 text-center`}
-            >
-              <div className="text-[2.5rem] font-bold tracking-tight text-white mb-2">{value}</div>
-              <div className="text-sm text-white/35">{label}</div>
-            </div>
-          ))}
-        </div>
       </div>
-
-      <div className="pointer-events-none absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
     </section>
   )
 }

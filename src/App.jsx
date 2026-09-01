@@ -11,7 +11,7 @@ export default function App() {
   const locale = getLocale()
 
   return (
-    <div className="min-h-screen bg-[#080808] text-white antialiased">
+    <div>
       <Navbar locale={locale} />
       <main>
         <HeroSection locale={locale} />

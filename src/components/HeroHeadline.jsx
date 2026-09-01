@@ -19,12 +19,12 @@ export default function HeroHeadline({ locale, className = '' }) {
   }, [words.length])
 
   return (
-    <h1 className={`text-[clamp(3.5rem,9vw,6.5rem)] font-bold tracking-[-0.04em] leading-[0.93] ${className}`}>
+    <h1 className={`hero-title ${className}`}>
       <span className="gradient-text">{heroCopy.headlineVerb}</span>
       <br />
       <span
         key={index}
-        className={`inline-block text-white ${exiting ? 'word-exit' : 'word-enter'}`}
+        className={`inline-block ${exiting ? 'word-exit' : 'word-enter'}`}
       >
         {words[index]}.
       </span>
