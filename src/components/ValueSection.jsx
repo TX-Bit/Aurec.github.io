@@ -46,6 +46,7 @@ export default function ValueSection({ locale }) {
               </div>
             ))}
           </div>
+        </div>
       </div>
     </section>
   )
