@@ -8,6 +8,9 @@
     <xhtml:link rel="alternate" hreflang="fi" href="https://www.aurec.site/fi/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.aurec.site/fr/"/>
     <xhtml:link rel="alternate" hreflang="sv" href="https://www.aurec.site/sv/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.aurec.site/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.aurec.site/de/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.aurec.site/zh/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aurec.site/"/>
   </url>
   <url>
@@ -18,6 +21,9 @@
     <xhtml:link rel="alternate" hreflang="fi" href="https://www.aurec.site/fi/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.aurec.site/fr/"/>
     <xhtml:link rel="alternate" hreflang="sv" href="https://www.aurec.site/sv/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.aurec.site/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.aurec.site/de/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.aurec.site/zh/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aurec.site/"/>
   </url>
   <url>
@@ -28,6 +34,9 @@
     <xhtml:link rel="alternate" hreflang="fi" href="https://www.aurec.site/fi/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.aurec.site/fr/"/>
     <xhtml:link rel="alternate" hreflang="sv" href="https://www.aurec.site/sv/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.aurec.site/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.aurec.site/de/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.aurec.site/zh/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aurec.site/"/>
   </url>
   <url>
@@ -38,6 +47,48 @@
     <xhtml:link rel="alternate" hreflang="fi" href="https://www.aurec.site/fi/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.aurec.site/fr/"/>
     <xhtml:link rel="alternate" hreflang="sv" href="https://www.aurec.site/sv/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.aurec.site/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.aurec.site/de/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.aurec.site/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aurec.site/"/>
+  </url>
+  <url>
+    <loc>https://www.aurec.site/es/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.aurec.site/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://www.aurec.site/fi/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.aurec.site/fr/"/>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://www.aurec.site/sv/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.aurec.site/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.aurec.site/de/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.aurec.site/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aurec.site/"/>
+  </url>
+  <url>
+    <loc>https://www.aurec.site/de/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.aurec.site/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://www.aurec.site/fi/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.aurec.site/fr/"/>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://www.aurec.site/sv/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.aurec.site/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.aurec.site/de/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.aurec.site/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aurec.site/"/>
+  </url>
+  <url>
+    <loc>https://www.aurec.site/zh/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.aurec.site/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://www.aurec.site/fi/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.aurec.site/fr/"/>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://www.aurec.site/sv/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.aurec.site/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.aurec.site/de/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.aurec.site/zh/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aurec.site/"/>
   </url>
 </urlset>

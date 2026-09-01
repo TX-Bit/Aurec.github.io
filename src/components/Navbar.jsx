@@ -40,18 +40,23 @@ export default function Navbar({ locale }) {
 
         {/* Actions */}
         <div className="nav-actions">
-          {otherLocales.map(code => (
-            <a
-              key={code}
-              href={getLocalePath(code)}
-              lang={code}
-              title={localeNames[code]}
-              className="nav-btn"
-              style={{ padding: '6px 12px', fontSize: '12px' }}
-            >
-              {code.toUpperCase()}
-            </a>
-          ))}
+          <div className="lang-dropdown">
+            <button className="nav-btn" style={{ padding: '6px 12px', fontSize: '12px', cursor: 'pointer' }}>
+              {locale.toUpperCase()} ▼
+            </button>
+            <div className="lang-menu">
+              {otherLocales.map(code => (
+                <a
+                  key={code}
+                  href={getLocalePath(code)}
+                  lang={code}
+                  title={localeNames[code]}
+                >
+                  {localeNames[code]} ({code.toUpperCase()})
+                </a>
+              ))}
+            </div>
+          </div>
           <a
             href={APP_STORE_URL}
             target="_blank"

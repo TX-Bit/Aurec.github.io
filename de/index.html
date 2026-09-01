@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        const forced = params.get('lang');
+        if (forced === 'en' || forced === 'fi' || forced === 'fr' || forced === 'sv' || forced === 'es' || forced === 'de' || forced === 'zh') return;
+
+        const languages = navigator.languages || [navigator.language || ''];
+        const preferred = languages
+          .map(lang => lang.toLowerCase().slice(0, 2))
+          .find(lang => ['fi', 'fr', 'sv'].includes(lang));
+
+        if (preferred && window.location.pathname === '/') {
+          window.location.replace('/' + preferred + '/');
+        }
+      })();
+    </script>
 
     <!-- Primary SEO -->
-    <title>Aurec – Enregistreur iPhone moderne | Enregistrement voix et musique</title>
-    <meta name="description" content="Aurec est une application moderne d’enregistrement pour iPhone. Enregistrez voix, musique, guitare et idées avec overdub, enregistrement automatique et audio WAV de haute qualité." />
-    <meta name="keywords" content="enregistreur iphone, application enregistrement iphone, enregistreur voix iphone, enregistrer guitare iphone, enregistrer voix iphone, overdub iphone, enregistrement automatique iphone, wav iphone" />
+    <title>Aurec – Moderne Sprachaufnahme-App für das iPhone</title>
+    <meta name="description" content="Nimm Stimme, Gitarre und Ideen auf dem iPhone mit Overdub, automatischer Aufnahme und hochwertigem WAV-Audio auf." />
+    <meta name="keywords" content="voice recorder with overdub, audio recorder for musicians iphone, record guitar and voice app, simple voice recorder ios app, iphone recorder, voice recorder app, audio recorder iphone, iphone auto recorder, music recorder iphone, wav recorder iphone" />
     <meta name="author" content="Aurec" />
-    <link rel="canonical" href="https://www.aurec.site/fr/" />
+    <link rel="canonical" href="https://www.aurec.site/de/" />
     <link rel="alternate" hreflang="en" href="https://www.aurec.site/" />
     <link rel="alternate" hreflang="fi" href="https://www.aurec.site/fi/" />
     <link rel="alternate" hreflang="fr" href="https://www.aurec.site/fr/" />
@@ -21,17 +37,17 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.aurec.site/fr/" />
-    <meta property="og:title" content="Aurec – Enregistreur iPhone moderne" />
-    <meta property="og:description" content="Enregistrez voix, guitare et idées sur iPhone avec overdub, enregistrement automatique et audio WAV de haute qualité." />
+    <meta property="og:url" content="https://www.aurec.site/de/" />
+    <meta property="og:title" content="Aurec – Moderne Sprachaufnahme-App für das iPhone" />
+    <meta property="og:description" content="Nimm Stimme, Gitarre und Ideen auf dem iPhone mit Overdub, automatischer Aufnahme und hochwertigem WAV-Audio auf." />
     <meta property="og:image" content="https://www.aurec.site/screenshots/iphone/01-recorder.png" />
-    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale" content="de_DE" />
     <meta property="og:site_name" content="Aurec" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Aurec – Enregistreur iPhone moderne" />
-    <meta name="twitter:description" content="Enregistrez voix, guitare et idées sur iPhone avec overdub, enregistrement automatique et audio WAV de haute qualité." />
+    <meta name="twitter:title" content="Aurec – Moderne Sprachaufnahme-App für das iPhone" />
+    <meta name="twitter:description" content="Nimm Stimme, Gitarre und Ideen auf dem iPhone mit Overdub, automatischer Aufnahme und hochwertigem WAV-Audio auf." />
     <meta name="twitter:image" content="https://www.aurec.site/screenshots/iphone/01-recorder.png" />
 
     <!-- Apple / iOS -->
@@ -57,7 +73,7 @@
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "Aurec",
-      "description": "Aurec est une application moderne d’enregistrement pour iPhone avec overdub, enregistrement automatique, audio WAV de haute qualité et export facile.",
+      "description": "Aurec is a simple voice recorder iOS app and audio recorder for musicians on iPhone, with overdub, automatic recording, high-quality WAV audio, and easy export.",
       "operatingSystem": "iOS, iPadOS",
       "applicationCategory": "UtilitiesApplication",
       "offers": {
@@ -68,15 +84,15 @@
       "url": "https://apps.apple.com/us/app/aurec/id6759679586",
       "image": "https://www.aurec.site/screenshots/iphone/01-recorder.png",
       "featureList": [
-        "Enregistrement en un geste",
-        "Overdub pour superposer plusieurs prises",
-        "Auto-Rec démarre automatiquement quand un son est détecté",
-        "Audio haute qualité jusqu’à 48 kHz / 32-bit",
-        "Enregistrement guitare et voix sur iPhone",
-        "Éditeur audio intégré",
-        "Organisation des enregistrements en sessions",
-        "Partage et export faciles",
-        "Compatible iPhone et iPad"
+        "One-tap recording",
+        "Overdub recording for layering takes",
+        "Auto Record — starts automatically when sound is detected",
+        "High-quality audio up to 48 kHz / 32-bit",
+        "Record guitar and voice on iPhone",
+        "Built-in audio editor",
+        "Session organization",
+        "Easy sharing and export",
+        "iPhone and iPad support"
       ]
     }
     </script>

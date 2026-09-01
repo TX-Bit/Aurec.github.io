@@ -1,12 +1,15 @@
 export const APP_STORE_URL = 'https://apps.apple.com/us/app/aurec/id6759679586'
 
-export const LOCALES = ['en', 'fi', 'fr', 'sv']
+export const LOCALES = ['en', 'fi', 'fr', 'sv', 'es', 'de', 'zh']
 
 export const localeNames = {
   en: 'English',
   fi: 'Suomi',
   fr: 'Français',
   sv: 'Svenska',
+  es: 'Español',
+  de: 'Deutsch',
+  zh: '中文',
 }
 
 export function getLocale() {
@@ -21,9 +24,10 @@ export function getLocale() {
   if (LOCALES.includes(langPrefix)) return langPrefix
 
   const path = window.location.pathname
-  if (path === '/fi' || path.startsWith('/fi/')) return 'fi'
-  if (path === '/fr' || path.startsWith('/fr/')) return 'fr'
-  if (path === '/sv' || path.startsWith('/sv/')) return 'sv'
+  for (const l of LOCALES) {
+    if (l === 'en') continue;
+    if (path === `/${l}` || path.startsWith(`/${l}/`)) return l;
+  }
 
   return 'en'
 }
@@ -509,4 +513,204 @@ export const copy = {
       cta: 'Ladda ner från App Store',
     },
   },
+  es: {
+    langLabel: 'Español',
+    nav: { features: 'Características', builtFor: 'Para Quién', download: 'Descargar' },
+    hero: {
+      badge: 'Disponible en el App Store',
+      headlineVerb: 'Graba',
+      words: ['fácilmente', 'automáticamente', 'con calidad'],
+      subhead: 'Graba guitarra y voz, ideas, con calidad. Simple y fácil, pero lleno de funciones.',
+      primaryCta: 'Descargar en el App Store',
+      secondaryCta: 'Ver características',
+      mockup: { monitor: 'Monitor', session: 'Sesión · #3', recording: 'Grabando', stop: 'Detener', autoRecord: 'Auto-Rec', tabs: ['Grabadora', 'Grabaciones', 'Info'] },
+    },
+    value: {
+      eyebrow: 'Qué es Aurec',
+      title: 'Aurec es una aplicación moderna de grabación para iPhone que te permite grabar audio, música e ideas sin esfuerzo.',
+      body1: 'A diferencia de las aplicaciones básicas, Aurec soporta grabación automática, overdubbing y formato de audio WAV.',
+      body2: 'Ya seas músico, estudiante o creador de contenido, Aurec te ayuda a capturar ideas en el momento en que aparecen.',
+      screens: [
+        { label: 'Grabación con un toque', description: 'Empieza al instante, deténte cuando quieras' },
+        { label: 'Graba automáticamente', description: 'Auto-Rec detecta el sonido y comienza' },
+        { label: 'Organización inteligente', description: 'Las sesiones mantienen todo ordenado' },
+        { label: 'Control total', description: 'Ajustes profesionales a un toque' },
+      ],
+      stats: [
+        { value: '48 kHz', label: 'Tasa de muestreo de estudio' },
+        { value: '32-bit', label: 'Profundidad de grabación float' },
+        { value: '∞', label: 'Duración de grabación' },
+      ],
+    },
+    features: {
+      eyebrow: 'Características',
+      title1: 'Todo lo que necesitas.',
+      title2: 'Nada que no necesites.',
+      items: [
+        { title: 'Grabación con un toque', description: 'Empieza a grabar inmediatamente sin configuración adicional.' },
+        { title: 'Editor de audio integrado', description: 'Recorta, corta y pule grabaciones directamente en el iPhone.' },
+        { title: 'Auto-Rec', description: 'Establece un umbral de silencio y deja que Aurec grabe automáticamente cuando se detecte sonido.' },
+        { title: 'Organización inteligente', description: 'Sesiones, metadatos y una lista clara mantienen las grabaciones fáciles de gestionar.' },
+        { title: 'Compartir y exportar fácil', description: 'Envía archivos rápidamente a Archivos, AirDrop u otras aplicaciones de iOS.' },
+      ],
+    },
+    builtFor: {
+      eyebrow: 'Para Quién',
+      title1: 'Una grabadora.',
+      title2: 'Para cada situación.',
+      items: [
+        { title: 'Para músicos', description: 'Captura riffs y demos en el momento en que llega la inspiración.' },
+        { title: 'Para podcasters y creadores', description: 'Grabación de campo confiable sin complejidad innecesaria.' },
+        { title: 'Para estudiantes y notas', description: 'Graba notas de voz con claridad y mantenlas organizadas.' },
+      ],
+    },
+    trust: {
+      eyebrow: 'Diseñado para iOS',
+      title1: 'Diseñado para iPhone y iPad.',
+      title2: 'Rápido, estable, familiar.',
+      intro: 'Aurec aprovecha las capacidades nativas de Apple para que la experiencia se sienta rápida y natural.',
+      items: [
+        { title: 'Nativo en iPhone y iPad', description: 'Construido con APIs nativas de iOS para una experiencia rápida.' },
+        { title: 'No requiere cuenta', description: 'Empieza a grabar desde el primer inicio. Sin registro.' },
+        { title: 'Tus datos son tuyos', description: 'Las grabaciones se quedan en tu dispositivo. Sin rastreo, sin anuncios.' },
+      ],
+    },
+    footer: {
+      links: { appStore: 'App Store', privacy: 'Política de Privacidad', support: 'Soporte', contact: 'Contacto' },
+      eyebrow: 'Comienza',
+      title: 'Empieza a grabar hoy',
+      body: 'Descarga Aurec en el App Store y captura tus ideas antes de que desaparezcan.',
+      cta: 'Descargar en el App Store',
+    },
+  },
+  de: {
+    langLabel: 'Deutsch',
+    nav: { features: 'Funktionen', builtFor: 'Für Wen', download: 'Laden' },
+    hero: {
+      badge: 'Jetzt im App Store',
+      headlineVerb: 'Nimm',
+      words: ['einfach auf', 'automatisch auf', 'mit Qualität auf'],
+      subhead: 'Nimm Gitarre und Stimme, Ideen, mit Qualität auf. Einfach und leicht, aber voller Funktionen.',
+      primaryCta: 'Im App Store laden',
+      secondaryCta: 'Funktionen ansehen',
+      mockup: { monitor: 'Monitor', session: 'Session · #3', recording: 'Aufnahme', stop: 'Stopp', autoRecord: 'Auto-Rec', tabs: ['Rekorder', 'Aufnahmen', 'Info'] },
+    },
+    value: {
+      eyebrow: 'Was ist Aurec',
+      title: 'Aurec ist eine moderne Sprachaufnahme-App für das iPhone, mit der du Audio, Musik und Ideen mühelos aufnehmen kannst.',
+      body1: 'Im Gegensatz zu einfachen Apps unterstützt Aurec automatische Aufnahme, Overdubbing und das WAV-Format.',
+      body2: 'Ob du Musiker, Student oder Content Creator bist, Aurec hilft dir, Ideen festzuhalten.',
+      screens: [
+        { label: 'One-Tap-Aufnahme', description: 'Sofort starten, jederzeit stoppen' },
+        { label: 'Nimmt automatisch auf', description: 'Auto-Rec erkennt Ton und startet' },
+        { label: 'Smarte Organisation', description: 'Sessions halten alles ordentlich' },
+        { label: 'Volle Kontrolle', description: 'Profi-Einstellungen mit einem Tipp' },
+      ],
+    },
+    features: {
+      eyebrow: 'Funktionen',
+      title1: 'Alles, was du brauchst.',
+      title2: 'Nichts, was du nicht brauchst.',
+      items: [
+        { title: 'One-Tap-Aufnahme', description: 'Starte die Aufnahme sofort ohne zusätzliche Einrichtung.' },
+        { title: 'Integrierter Audio-Editor', description: 'Schneide, trimme und poliere Aufnahmen direkt auf dem iPhone.' },
+        { title: 'Auto-Rec', description: 'Aurec startet die Aufnahme automatisch bei Geräuschen.' },
+        { title: 'Smarte Organisation', description: 'Sessions und eine übersichtliche Liste erleichtern die Verwaltung.' },
+        { title: 'Einfaches Teilen & Exportieren', description: 'Sende Dateien schnell an Dateien, AirDrop oder andere Apps.' },
+      ],
+    },
+    builtFor: {
+      eyebrow: 'Für Wen',
+      title1: 'Ein Rekorder.',
+      title2: 'Für jede Situation.',
+      items: [
+        { title: 'Für Musiker', description: 'Nimm Riffs und Demos auf, wenn die Inspiration zuschlägt.' },
+        { title: 'Für Podcaster', description: 'Zuverlässige Feldaufnahmen ohne unnötige Komplexität.' },
+        { title: 'Für Notizen', description: 'Nimm Sprachnotizen klar auf und halte sie organisiert.' },
+      ],
+    },
+    trust: {
+      eyebrow: 'Gemacht für iOS',
+      title1: 'Für iPhone und iPad.',
+      title2: 'Schnell, stabil, vertraut.',
+      intro: 'Aurec nutzt native Apple-Funktionen für eine schnelle Nutzung.',
+      items: [
+        { title: 'Nativ für iPhone & iPad', description: 'Erstellt mit nativen iOS-APIs.' },
+        { title: 'Kein Konto', description: 'Starte die Aufnahme direkt beim ersten Start.' },
+        { title: 'Deine Daten gehören dir', description: 'Aufnahmen bleiben auf deinem Gerät. Kein Tracking.' },
+      ],
+    },
+    footer: {
+      links: { appStore: 'App Store', privacy: 'Datenschutz', support: 'Support', contact: 'Kontakt' },
+      eyebrow: 'Loslegen',
+      title: 'Beginne heute mit der Aufnahme',
+      body: 'Lade Aurec im App Store herunter und halte deine Ideen fest.',
+      cta: 'Im App Store laden',
+    },
+  },
+  zh: {
+    langLabel: '中文',
+    nav: { features: '功能', builtFor: '适用', download: '下载' },
+    hero: {
+      badge: '现已在 App Store 上架',
+      headlineVerb: '记录',
+      words: ['灵感', '声音', '每一刻'],
+      subhead: '录制吉他、人声和灵感，音质出众。简单易用，但功能齐全。',
+      primaryCta: '在 App Store 下载',
+      secondaryCta: '查看功能',
+      mockup: { monitor: '监听', session: '会话 · #3', recording: '录音中', stop: '停止', autoRecord: '自动录音', tabs: ['录音机', '录音', '信息'] },
+    },
+    value: {
+      eyebrow: 'Aurec 是什么',
+      title: 'Aurec 是一款适用于 iPhone 的现代录音应用，让您轻松录制音频。',
+      body1: 'Aurec 支持自动录音、多轨叠加和 WAV 音频格式。',
+      body2: '无论您是音乐家、学生还是创作者，Aurec 都能捕捉灵感。',
+      screens: [
+        { label: '一键录音', description: '瞬间启动，随时停止' },
+        { label: '自动录音', description: '检测到声音即自动开始' },
+        { label: '智能整理', description: '使用会话让一切井井有条' },
+        { label: '完全控制', description: '专业设置，一触即达' },
+      ],
+    },
+    features: {
+      eyebrow: '功能',
+      title1: '你所需的一切。',
+      title2: '没有多余。',
+      items: [
+        { title: '一键录音', description: '无需额外设置即可立即开始录音。' },
+        { title: '内置音频编辑器', description: '直接在 iPhone 上修剪和打磨录音。' },
+        { title: '自动录音', description: '检测到声音时自动开始录音。' },
+        { title: '智能整理', description: '会话、元数据和列表让录音易于管理。' },
+        { title: '轻松分享与导出', description: '快速将文件发送至“文件”、AirDrop。' },
+      ],
+    },
+    builtFor: {
+      eyebrow: '适用人群',
+      title1: '一款录音机。',
+      title2: '适用于各种场景。',
+      items: [
+        { title: '音乐家', description: '在灵感闪现时捕捉灵感。' },
+        { title: '播客', description: '可靠的现场录音。' },
+        { title: '学生笔记', description: '清晰录制语音笔记并保持井井有条。' },
+      ],
+    },
+    trust: {
+      eyebrow: '专为 iOS 打造',
+      title1: '专为 iPhone 和 iPad 设计。',
+      title2: '快速、稳定。',
+      intro: 'Aurec 利用 Apple 原生功能，体验极速自然。',
+      items: [
+        { title: 'iPhone 和 iPad 原生', description: '使用原生 iOS API 构建。' },
+        { title: '无需账户', description: '首次启动即可开始录音。无需注册。' },
+        { title: '数据归您所有', description: '录音保存在设备上。无跟踪，无广告。' },
+      ],
+    },
+    footer: {
+      links: { appStore: 'App Store', privacy: '隐私政策', support: '支持', contact: '联系' },
+      eyebrow: '开始使用',
+      title: '立即开始录音',
+      body: '在 App Store 下载 Aurec，在灵感消失前捕捉它们。',
+      cta: '在 App Store 下载',
+    },
+  }
 }
