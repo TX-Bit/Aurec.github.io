@@ -160,4 +160,39 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://www.aurec.site/pt/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aurec.site/"/>
   </url>
+  <url>
+    <loc>https://www.aurec.site/voice-recorder-iphone/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aurec.site/multitrack-recorder-iphone/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aurec.site/overdub-app-iphone/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aurec.site/record-guitar-and-vocals-iphone/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aurec.site/usb-audio-interface-ipad/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aurec.site/audio-editor-iphone/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aurec.site/audacity-alternative-ios/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

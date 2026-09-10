@@ -53,6 +53,12 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 /* ── Container ────────────────────────────────────────────── */
 .container {
   max-width: 1200px;
@@ -348,6 +354,16 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 0 1px rgba(255,255,255,0.2), 0 30px 80px rgba(0,0,0,0.8), inset 0 2px 4px rgba(255,255,255,0.3);
   display: block;
   margin: 0 auto;
+}
+.hero-mockup-img.hero-mockup-ipad {
+  max-width: 380px;
+  border-radius: 28px;
+}
+@media (max-width: 640px) {
+  .hero-mockup-img.hero-mockup-ipad {
+    max-width: 280px;
+    border-radius: 20px;
+  }
 }
 
 /* ── Glow Cards (Features) ────────────────────────────────── */

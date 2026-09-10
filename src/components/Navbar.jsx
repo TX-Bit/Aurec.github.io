@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { APP_STORE_URL, LOCALES, copy, getLocalePath, localeNames } from '../i18n'
+import { trackAppStoreClick } from '../utils/analytics'
 
 export default function Navbar({ locale }) {
   const [scrolled, setScrolled] = useState(false)
@@ -62,6 +63,7 @@ export default function Navbar({ locale }) {
             target="_blank"
             rel="noopener noreferrer"
             className="nav-btn"
+            onClick={() => trackAppStoreClick('navbar_download', typeof window !== 'undefined' ? window.location.pathname : '/')}
           >
             {t.nav.download}
           </a>
