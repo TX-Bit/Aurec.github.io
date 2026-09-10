@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-import { SEO_PAGES } from '../data/seoPagesData'
+import { copy } from '../i18n'
 
 function useCardRef() {
   const ref = useRef(null)
@@ -21,20 +21,21 @@ function useCardRef() {
   return ref
 }
 
-export default function ExploreSection() {
+export default function ExploreSection({ locale = 'en' }) {
   const titleRef = useCardRef()
+  const t = copy[locale]?.explore || copy.en.explore
 
   return (
     <section id="explore" className="section container" style={{ paddingTop: '80px', paddingBottom: '100px' }}>
       <div ref={titleRef} className="reveal text-center" style={{ marginBottom: '56px' }}>
-        <p className="eyebrow">Use Cases & Guides</p>
+        <p className="eyebrow">{t.eyebrow}</p>
         <h2 className="section-title">
-          Explore Aurec.
+          {t.title1}
           <br />
-          <span className="gradient-text">Tailored for Your Sound.</span>
+          <span className="gradient-text">{t.title2}</span>
         </h2>
         <p className="section-subtitle">
-          Record instantly, then add tracks and edit when you need to. Discover guides for songwriters, vocalists, and creators.
+          {t.subtitle}
         </p>
       </div>
 
@@ -43,10 +44,10 @@ export default function ExploreSection() {
         gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
         gap: '20px',
       }}>
-        {SEO_PAGES.map((page, idx) => (
+        {t.items.map((item) => (
           <a
-            key={page.slug}
-            href={page.path}
+            key={item.path}
+            href={`${item.path}${locale !== 'en' ? '?lang=' + locale : ''}`}
             className="glow-card"
             style={{
               display: 'flex',
@@ -70,7 +71,7 @@ export default function ExploreSection() {
                 marginBottom: '12px',
               }}>
                 <span className="rec-dot" style={{ width: 5, height: 5 }} />
-                {page.badge}
+                {item.badge}
               </div>
               <h3 style={{
                 fontSize: '18px',
@@ -79,7 +80,7 @@ export default function ExploreSection() {
                 marginBottom: '10px',
                 lineHeight: 1.3,
               }}>
-                {page.h1}
+                {item.title}
               </h3>
               <p style={{
                 fontSize: '14px',
@@ -87,7 +88,7 @@ export default function ExploreSection() {
                 lineHeight: 1.6,
                 marginBottom: '20px',
               }}>
-                {page.metaDescription}
+                {item.description}
               </p>
             </div>
 
@@ -99,7 +100,7 @@ export default function ExploreSection() {
               alignItems: 'center',
               gap: '6px',
             }}>
-              <span>Read guide</span>
+              <span>{t.readGuide}</span>
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path d="M2.5 6h7M6.5 2.5l3.5 3.5-3.5 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

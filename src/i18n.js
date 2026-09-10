@@ -1,3 +1,5 @@
+import { exploreTranslations } from './data/exploreTranslations.js'
+
 export const APP_STORE_URL = 'https://apps.apple.com/us/app/aurec/id6759679586'
 
 export const LOCALES = ['en', 'fi', 'fr', 'sv', 'es', 'de', 'zh', 'ja', 'hi', 'pt']
@@ -910,5 +912,14 @@ export const copy = {
       body: 'ऐप स्टोर से Aurec डाउनलोड करें और विचारों के गायब होने से पहले उन्हें कैप्चर करें।',
       cta: 'ऐप स्टोर से डाउनलोड करें',
     },
+  }
+}
+
+for (const locale of LOCALES) {
+  if (copy[locale] && exploreTranslations[locale]) {
+    copy[locale].explore = exploreTranslations[locale]
+    if (copy[locale].footer) {
+      copy[locale].footer.guidesTitle = exploreTranslations[locale].footerTitle
+    }
   }
 }

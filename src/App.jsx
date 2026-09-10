@@ -19,7 +19,7 @@ export default function App() {
         <ValueSection locale={locale} />
         <FeaturesSection locale={locale} />
         <BuiltForSection locale={locale} />
-        <ExploreSection />
+        <ExploreSection locale={locale} />
         <TrustSection locale={locale} />
       </main>
       <Footer locale={locale} />

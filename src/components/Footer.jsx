@@ -1,9 +1,9 @@
 import { APP_STORE_URL, copy } from '../i18n'
 import { trackAppStoreClick } from '../utils/analytics'
-import { SEO_PAGES } from '../data/seoPagesData'
 
 export default function Footer({ locale }) {
   const t = copy[locale].footer
+  const exp = copy[locale].explore || copy.en.explore
   const links = [
     { label: t.links.appStore, href: APP_STORE_URL, external: true, isAppStore: true },
     { label: t.links.privacy, href: 'https://tx-bit.github.io/Aurec-privacy/', external: true },
@@ -40,18 +40,18 @@ export default function Footer({ locale }) {
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)', padding: '40px 0' }}>
         <div className="container">
           <p style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.3)', marginBottom: '16px', fontWeight: 600 }}>
-            Guides & Solutions
+            {t.guidesTitle || 'Guides & Solutions'}
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '12px' }}>
-            {SEO_PAGES.map(page => (
+            {exp.items.map(item => (
               <a
-                key={page.slug}
-                href={page.path}
+                key={item.path}
+                href={`${item.path}${locale !== 'en' ? '?lang=' + locale : ''}`}
                 style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s', textDecoration: 'none' }}
                 onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-color)'}
                 onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.5)'}
               >
-                {page.badge || page.h1}
+                {item.title}
               </a>
             ))}
           </div>

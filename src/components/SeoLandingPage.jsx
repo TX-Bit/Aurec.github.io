@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { APP_STORE_URL, trackAppStoreClick } from '../utils/analytics'
 import { SEO_PAGES } from '../data/seoPagesData'
+import { SEO_PAGES_FI } from '../data/seoPagesDataFi'
 
 export default function SeoLandingPage({ pageData }) {
   const [scrolled, setScrolled] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
+  const [currentLocale, setCurrentLocale] = useState(() => {
+    if (typeof window === 'undefined') return 'en'
+    const params = new URLSearchParams(window.location.search)
+    const forced = params.get('lang')?.toLowerCase()
+    if (forced === 'fi') return 'fi'
+    return 'en'
+  })
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -16,18 +24,42 @@ export default function SeoLandingPage({ pageData }) {
     setOpenFaq(prev => (prev === index ? null : index))
   }
 
-  const otherPages = SEO_PAGES.filter(p => p.slug !== pageData.slug)
+  const handleLanguageChange = (lang) => {
+    setCurrentLocale(lang)
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location)
+      if (lang === 'en') {
+        url.searchParams.delete('lang')
+      } else {
+        url.searchParams.set('lang', lang)
+      }
+      window.history.replaceState({}, '', url)
+    }
+  }
+
+  const fiData = SEO_PAGES_FI[pageData.slug]
+  const isFi = currentLocale === 'fi' && !!fiData
+  const activeData = isFi ? { ...pageData, ...fiData } : pageData
+
+  const otherPages = SEO_PAGES.filter(p => p.slug !== pageData.slug).map(p => {
+    if (isFi && SEO_PAGES_FI[p.slug]) {
+      return { ...p, ...SEO_PAGES_FI[p.slug] }
+    }
+    return p
+  })
 
   const handleAppStoreClick = (placement) => {
     trackAppStoreClick(placement, pageData.path)
   }
+
+  const homeHref = isFi ? '/fi/' : '/'
 
   return (
     <div className="seo-page-root">
       {/* ── Top Navigation ────────────────────────────────────── */}
       <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <nav className="container navbar-inner" aria-label="Main Navigation">
-          <a href="/" className="nav-logo" title="Aurec - Back to Home">
+          <a href={homeHref} className="nav-logo" title="Aurec - Back to Home">
             <span className="nav-logo-icon">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <circle cx="7" cy="7" r="3" fill="white" />
@@ -38,15 +70,40 @@ export default function SeoLandingPage({ pageData }) {
           </a>
 
           <ul className="nav-links">
-            <li><a href="/" className="nav-link">Home</a></li>
-            <li><a href="#features" className="nav-link">Features</a></li>
-            <li><a href="#specs" className="nav-link">Specs</a></li>
-            <li><a href="#workflow" className="nav-link">Workflow</a></li>
-            <li><a href="#faq" className="nav-link">FAQ</a></li>
-            <li><a href="#guides" className="nav-link">Guides</a></li>
+            <li><a href={homeHref} className="nav-link">{isFi ? 'Etusivu' : 'Home'}</a></li>
+            <li><a href="#features" className="nav-link">{isFi ? 'Ominaisuudet' : 'Features'}</a></li>
+            <li><a href="#specs" className="nav-link">{isFi ? 'Tekniset tiedot' : 'Specs'}</a></li>
+            <li><a href="#workflow" className="nav-link">{isFi ? 'Työnkulku' : 'Workflow'}</a></li>
+            <li><a href="#faq" className="nav-link">{isFi ? 'UKK' : 'FAQ'}</a></li>
+            <li><a href="#guides" className="nav-link">{isFi ? 'Oppaat' : 'Guides'}</a></li>
           </ul>
 
           <div className="nav-actions">
+            {/* Language Switcher */}
+            <div className="lang-dropdown">
+              <button className="nav-btn" style={{ padding: '6px 12px', fontSize: '12px', cursor: 'pointer' }}>
+                {currentLocale.toUpperCase()} ▼
+              </button>
+              <div className="lang-menu">
+                {currentLocale !== 'en' && (
+                  <button
+                    onClick={() => handleLanguageChange('en')}
+                    style={{ background: 'none', border: 'none', color: '#fff', padding: '8px 16px', textAlign: 'left', cursor: 'pointer', width: '100%', fontSize: '13px' }}
+                  >
+                    English (EN)
+                  </button>
+                )}
+                {currentLocale !== 'fi' && (
+                  <button
+                    onClick={() => handleLanguageChange('fi')}
+                    style={{ background: 'none', border: 'none', color: '#fff', padding: '8px 16px', textAlign: 'left', cursor: 'pointer', width: '100%', fontSize: '13px' }}
+                  >
+                    Suomi (FI)
+                  </button>
+                )}
+              </div>
+            </div>
+
             <a
               href={APP_STORE_URL}
               target="_blank"
@@ -54,7 +111,7 @@ export default function SeoLandingPage({ pageData }) {
               className="nav-btn"
               onClick={() => handleAppStoreClick('navbar_download')}
             >
-              Download
+              {isFi ? 'Lataa' : 'Download'}
             </a>
           </div>
         </nav>
@@ -64,12 +121,16 @@ export default function SeoLandingPage({ pageData }) {
         {/* ── Breadcrumb Navigation ─────────────────────────────── */}
         <div className="container" style={{ paddingTop: '20px', paddingBottom: '10px' }}>
           <nav aria-label="Breadcrumbs" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-            <a href="/" style={{ color: 'rgba(255,255,255,0.7)', transition: 'color 0.2s' }}>Home</a>
+            <a href={homeHref} style={{ color: 'rgba(255,255,255,0.7)', transition: 'color 0.2s' }}>
+              {isFi ? 'Etusivu' : 'Home'}
+            </a>
             <span>/</span>
-            <span style={{ color: 'rgba(255,255,255,0.4)' }}>Guides</span>
+            <span style={{ color: 'rgba(255,255,255,0.4)' }}>
+              {isFi ? 'Oppaat' : 'Guides'}
+            </span>
             <span>/</span>
             <span style={{ color: 'var(--accent-color)', fontWeight: 500 }} aria-current="page">
-              {pageData.badge || pageData.h1}
+              {activeData.badge || activeData.h1}
             </span>
           </nav>
         </div>
@@ -83,15 +144,15 @@ export default function SeoLandingPage({ pageData }) {
               <div className="hero-text">
                 <div className="hero-badge">
                   <span className="rec-dot" />
-                  {pageData.badge}
+                  {activeData.badge}
                 </div>
 
                 <h1 className="hero-title" style={{ fontSize: 'clamp(2.4rem, 5vw, 4.2rem)' }}>
-                  {pageData.h1}
+                  {activeData.h1}
                 </h1>
 
                 <p className="hero-desc" style={{ maxWidth: '600px' }}>
-                  {pageData.heroSubtitle}
+                  {activeData.heroSubtitle}
                 </p>
 
                 <div className="hero-ctas">
@@ -105,11 +166,11 @@ export default function SeoLandingPage({ pageData }) {
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                     </svg>
-                    Download on the App Store
+                    {isFi ? 'Lataa App Storesta' : 'Download on the App Store'}
                   </a>
 
                   <a href="#features" className="btn-secondary">
-                    Explore Details
+                    {isFi ? 'Katso lisätiedot' : 'Explore Details'}
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ marginLeft: '6px' }}>
                       <path d="M1 7h12M8 2.5l4.5 4.5L8 11.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
@@ -119,14 +180,14 @@ export default function SeoLandingPage({ pageData }) {
 
               {/* Hero Visual Mockup */}
               <div className="hero-visual">
-                <div className={`hero-mockup-wrapper ${pageData.heroImage?.device === 'ipad' ? 'hero-mockup-ipad-wrapper' : ''}`}>
+                <div className={`hero-mockup-wrapper ${activeData.heroImage?.device === 'ipad' ? 'hero-mockup-ipad-wrapper' : ''}`}>
                   <div className="hero-mockup-glow" />
                   <img
-                    src={pageData.heroImage?.src || '/screenshots/iphone/recorder.png'}
-                    alt={pageData.heroImage?.alt || `Aurec interface screenshot for ${pageData.h1}`}
-                    className={`hero-mockup-img${pageData.heroImage?.device === 'ipad' ? ' hero-mockup-ipad' : ''}`}
-                    width={pageData.heroImage?.device === 'ipad' ? '360' : '280'}
-                    height={pageData.heroImage?.device === 'ipad' ? '480' : '608'}
+                    src={activeData.heroImage?.src || '/screenshots/iphone/recorder.png'}
+                    alt={activeData.heroImage?.alt || `Aurec interface screenshot for ${activeData.h1}`}
+                    className={`hero-mockup-img${activeData.heroImage?.device === 'ipad' ? ' hero-mockup-ipad' : ''}`}
+                    width={activeData.heroImage?.device === 'ipad' ? '360' : '280'}
+                    height={activeData.heroImage?.device === 'ipad' ? '480' : '608'}
                     loading="eager"
                   />
                 </div>
@@ -142,7 +203,7 @@ export default function SeoLandingPage({ pageData }) {
             gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
             gap: '16px',
           }}>
-            {pageData.technicalSpecs.map((spec, idx) => (
+            {activeData.technicalSpecs.map((spec, idx) => (
               <div
                 key={idx}
                 style={{
@@ -165,9 +226,9 @@ export default function SeoLandingPage({ pageData }) {
         </section>
 
         {/* ── Practical Guide & Editorial Deep-Dive ─────────────── */}
-        {pageData.guideSections && pageData.guideSections.length > 0 && (
+        {activeData.guideSections && activeData.guideSections.length > 0 && (
           <section className="container" style={{ padding: '20px 24px 60px', maxWidth: '840px', margin: '0 auto' }}>
-            {pageData.disclaimer && (
+            {activeData.disclaimer && (
               <div style={{
                 background: 'rgba(255, 255, 255, 0.03)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -178,11 +239,11 @@ export default function SeoLandingPage({ pageData }) {
                 lineHeight: 1.6,
                 color: 'rgba(255, 255, 255, 0.7)',
               }}>
-                <span style={{ fontWeight: 600, color: '#fff' }}>Important Notice: </span>
-                {pageData.disclaimer}
+                <span style={{ fontWeight: 600, color: '#fff' }}>{isFi ? 'Tärkeä huomautus: ' : 'Important Notice: '}</span>
+                {activeData.disclaimer}
               </div>
             )}
-            {pageData.guideSections.map((sec, idx) => (
+            {activeData.guideSections.map((sec, idx) => (
               <div key={idx} style={{ marginBottom: '48px' }}>
                 <h2 style={{ fontSize: 'clamp(1.5rem, 3.2vw, 2.1rem)', fontWeight: 700, color: '#fff', marginBottom: '18px', lineHeight: 1.25 }}>
                   {sec.heading}
@@ -202,19 +263,21 @@ export default function SeoLandingPage({ pageData }) {
         {/* ── Core Features Section ─────────────────────────────── */}
         <section id="features" className="section container" style={{ paddingTop: '60px', paddingBottom: '80px' }}>
           <div className="text-center">
-            <span className="eyebrow">Key Capabilities</span>
+            <span className="eyebrow">{isFi ? 'Tärkeimmät ominaisuudet' : 'Key Capabilities'}</span>
             <h2 className="section-title">
-              Engineered for Sound.
+              {isFi ? 'Suunniteltu äänenlaadulle.' : 'Engineered for Sound.'}
               <br />
-              <span className="gradient-text">Zero Compromises.</span>
+              <span className="gradient-text">{isFi ? 'Ilman kompromisseja.' : 'Zero Compromises.'}</span>
             </h2>
             <p className="section-subtitle">
-              Every tool in Aurec is built directly into native iOS audio frameworks for low latency, high dynamic range, and rock-solid stability.
+              {isFi
+                ? 'Kaikki Aurecin työkalut hyödyntävät iOS:n natiiveja äänikehyksiä matalan viiveen ja luotettavan vakauden takaamiseksi.'
+                : 'Every tool in Aurec is built directly into native iOS audio frameworks for low latency, high dynamic range, and rock-solid stability.'}
             </p>
           </div>
 
           <div className="features-grid" style={{ marginTop: '48px' }}>
-            {pageData.coreFeatures.map((feat, idx) => (
+            {activeData.coreFeatures.map((feat, idx) => (
               <div key={idx} className="glow-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
                   <div className={`feature-icon-wrapper ${idx === 0 ? 'accent' : ''}`}>
@@ -236,12 +299,14 @@ export default function SeoLandingPage({ pageData }) {
         {/* ── Workflow Steps ────────────────────────────────────── */}
         <section id="workflow" className="section container" style={{ paddingTop: '40px', paddingBottom: '80px' }}>
           <div className="text-center">
-            <span className="eyebrow">How It Works</span>
+            <span className="eyebrow">{isFi ? 'Työnkulku' : 'How It Works'}</span>
             <h2 className="section-title">
-              Simple 3-Step Workflow
+              {isFi ? 'Miten se toimii' : 'Simple 3-Step Workflow'}
             </h2>
             <p className="section-subtitle">
-              From the initial burst of inspiration to finished, uncompressed stems ready for your DAW.
+              {isFi
+                ? 'Ideasta valmiiseen tallenteeseen muutamalla napautuksella.'
+                : 'From the initial burst of inspiration to finished, uncompressed stems ready for your DAW.'}
             </p>
           </div>
 
@@ -251,7 +316,7 @@ export default function SeoLandingPage({ pageData }) {
             gap: '24px',
             marginTop: '48px',
           }}>
-            {pageData.workflowSteps.map((step, idx) => (
+            {activeData.workflowSteps.map((step, idx) => (
               <div
                 key={idx}
                 className="glow-card"
@@ -280,17 +345,19 @@ export default function SeoLandingPage({ pageData }) {
         {/* ── FAQ Section (Structured Accordion) ────────────────── */}
         <section id="faq" className="section container" style={{ paddingTop: '40px', paddingBottom: '80px' }}>
           <div className="text-center" style={{ marginBottom: '48px' }}>
-            <span className="eyebrow">Questions & Answers</span>
+            <span className="eyebrow">{isFi ? 'Vastauksia kysymyksiin' : 'Questions & Answers'}</span>
             <h2 className="section-title">
-              Frequently Asked Questions
+              {isFi ? 'Usein kysytyt kysymykset' : 'Frequently Asked Questions'}
             </h2>
             <p className="section-subtitle">
-              Common questions about using Aurec for {pageData.badge.toLowerCase()} on iOS.
+              {isFi
+                ? `Yleisiä kysymyksiä Aurecin käytöstä iOS-laitteilla.`
+                : `Common questions about using Aurec for ${activeData.badge.toLowerCase()} on iOS.`}
             </p>
           </div>
 
           <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            {pageData.faq.map((item, idx) => {
+            {activeData.faq.map((item, idx) => {
               const isOpen = openFaq === idx
               return (
                 <div
@@ -354,12 +421,14 @@ export default function SeoLandingPage({ pageData }) {
         {/* ── Internal Linking: Related Guides & Topics ─────────── */}
         <section id="guides" className="section container" style={{ paddingTop: '40px', paddingBottom: '80px', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
           <div className="text-center" style={{ marginBottom: '40px' }}>
-            <span className="eyebrow">Explore Aurec</span>
+            <span className="eyebrow">{isFi ? 'Jatka tutkimista' : 'Explore Aurec'}</span>
             <h2 className="section-title">
-              Related Audio Recording Guides
+              {isFi ? 'Aiheeseen liittyvät oppaat' : 'Related Audio Recording Guides'}
             </h2>
             <p className="section-subtitle">
-              Discover all the capabilities of Aurec for musicians, podcasters, and sound creators.
+              {isFi
+                ? 'Löydä kaikki Aurecin ominaisuudet muusikoille, laulajille ja äänittäjille.'
+                : 'Discover all the capabilities of Aurec for musicians, podcasters, and sound creators.'}
             </p>
           </div>
 
@@ -371,7 +440,7 @@ export default function SeoLandingPage({ pageData }) {
             {otherPages.map((guide) => (
               <a
                 key={guide.slug}
-                href={guide.path}
+                href={`${guide.path}${isFi ? '?lang=fi' : ''}`}
                 style={{
                   display: 'block',
                   background: 'rgba(255, 255, 255, 0.02)',
@@ -404,8 +473,8 @@ export default function SeoLandingPage({ pageData }) {
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '36px' }}>
-            <a href="/" style={{ fontSize: '14px', color: 'var(--accent-color)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-              ← Return to Aurec Homepage
+            <a href={homeHref} style={{ fontSize: '14px', color: 'var(--accent-color)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              {isFi ? '← Palaa Aurecin etusivulle' : '← Return to Aurec Homepage'}
             </a>
           </div>
         </section>
@@ -420,12 +489,14 @@ export default function SeoLandingPage({ pageData }) {
             textAlign: 'center',
             boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 60px rgba(242, 49, 69, 0.1)',
           }}>
-            <span className="eyebrow">Get Aurec for iOS</span>
+            <span className="eyebrow">{isFi ? 'Aurec iOS:lle' : 'Get Aurec for iOS'}</span>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, marginBottom: '16px', color: '#fff' }}>
-              Ready to record with studio-grade clarity?
+              {isFi ? 'Valmiina äänittämään studiotason tarkkuudella?' : 'Ready to record with studio-grade clarity?'}
             </h2>
             <p style={{ maxWidth: '560px', margin: '0 auto 36px', color: 'var(--text-secondary)', fontSize: '16px' }}>
-              Download Aurec on the App Store today. No accounts, no subscriptions, and complete offline privacy.
+              {isFi
+                ? 'Lataa Aurec App Storesta tänään. Ei käyttäjätilejä, ei kuukausimaksuja ja täysi offline-yksityisyys.'
+                : 'Download Aurec on the App Store today. No accounts, no subscriptions, and complete offline privacy.'}
             </p>
             <a
               href={APP_STORE_URL}
@@ -438,7 +509,7 @@ export default function SeoLandingPage({ pageData }) {
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
               </svg>
-              Download on the App Store
+              {isFi ? 'Lataa App Storesta' : 'Download on the App Store'}
             </a>
           </div>
         </section>
@@ -455,17 +526,27 @@ export default function SeoLandingPage({ pageData }) {
                   <circle cx="7" cy="7" r="5.5" stroke="white" strokeWidth="1.2" strokeOpacity="0.4" fill="none" />
                 </svg>
               </span>
-              <a href="/" style={{ color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 500 }}>Aurec</a>
+              <a href={homeHref} style={{ color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: 500 }}>Aurec</a>
               <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '14px' }}>·</span>
               <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '14px' }}>&copy; {new Date().getFullYear()}</span>
             </div>
 
             <nav style={{ display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap' }}>
-              <a href="/" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s' }}>Home</a>
-              <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s' }} onClick={() => handleAppStoreClick('footer_download')}>App Store</a>
-              <a href="https://tx-bit.github.io/Aurec-privacy/" target="_blank" rel="noopener noreferrer" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s' }}>Privacy Policy</a>
-              <a href="https://tx-bit.github.io/aurec-support/" target="_blank" rel="noopener noreferrer" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s' }}>Support</a>
-              <a href="mailto:rndoldtech@gmail.com" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s' }}>Contact</a>
+              <a href={homeHref} style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s' }}>
+                {isFi ? 'Etusivu' : 'Home'}
+              </a>
+              <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s' }} onClick={() => handleAppStoreClick('footer_download')}>
+                App Store
+              </a>
+              <a href="https://tx-bit.github.io/Aurec-privacy/" target="_blank" rel="noopener noreferrer" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s' }}>
+                {isFi ? 'Tietosuojaseloste' : 'Privacy Policy'}
+              </a>
+              <a href="https://tx-bit.github.io/aurec-support/" target="_blank" rel="noopener noreferrer" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s' }}>
+                {isFi ? 'Tuki' : 'Support'}
+              </a>
+              <a href="mailto:rndoldtech@gmail.com" style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s' }}>
+                {isFi ? 'Yhteys' : 'Contact'}
+              </a>
             </nav>
           </div>
         </div>
